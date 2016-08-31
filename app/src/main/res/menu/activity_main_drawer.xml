@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_mymsg"
+        android:icon="@drawable/mymsg"
+        android:title="我的消息" />
+    <item
+        android:id="@+id/nav_myinfo"
+        android:icon="@drawable/myinfo"
+        android:title="个人信息" />
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/share"
+        android:title="分享" />
+    <item
+        android:id="@+id/nav_social"
+        android:icon="@drawable/social"
+        android:title="社交圈" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/settings"
+        android:title="设置"/>
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/about"
+        android:title="关于" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/exit"
+        android:title="退出"/>
+
+</menu>
