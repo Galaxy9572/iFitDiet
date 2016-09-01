@@ -53,11 +53,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_adddev"
+        android:id="@+id/bt_discover"
         android:layout_below="@id/lv_mydev"
         android:layout_centerHorizontal="true"
-        android:text="+添加设备"
+        android:text="discover"
         android:background="@color/white"
-        android:onClick="addDevice"
+        android:onClick="discover"
         />
+
 </RelativeLayout>

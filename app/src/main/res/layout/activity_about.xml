@@ -12,6 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="18dp"
-        android:text="应用名称：iFitDiet\n版本：1.0\nOrange团队"/>
+        android:text="应用名称：iFitDiet\n版本：1.0 Beta\nOrange团队"/>
 
 </RelativeLayout>

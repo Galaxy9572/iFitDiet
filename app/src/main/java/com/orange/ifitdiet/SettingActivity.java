@@ -9,13 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity{
     private int bState;
     private BluetoothManager bluetoothManager;
     private BluetoothAdapter ba;
     private static final long SCAN_PERIOD = 10000;
-    private boolean mScanning;
-    private Handler mHandler;
+    private Handler handler;
 
     public SettingActivity() {
     }
@@ -26,19 +25,19 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settimg);
         bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         ba = bluetoothManager.getAdapter();
-        final Switch sw_bluetooth=(Switch)findViewById(R.id.switch_bluetooth);
+        final Switch sw_bluetooth = (Switch) findViewById(R.id.switch_bluetooth);
         bState = ba.getState();
-        if(bState ==BluetoothAdapter.STATE_ON){
+        if (bState == BluetoothAdapter.STATE_ON) {
             sw_bluetooth.setChecked(true);
-        }else if(bState ==BluetoothAdapter.STATE_OFF){
+        } else if (bState == BluetoothAdapter.STATE_OFF) {
             sw_bluetooth.setChecked(false);
         }
-        final CompoundButton.OnCheckedChangeListener bt_listener =new CompoundButton.OnCheckedChangeListener() {
+        final CompoundButton.OnCheckedChangeListener bt_listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     ba.enable();
-                }else {
+                } else {
                     ba.disable();
                 }
             }
@@ -46,5 +45,7 @@ public class SettingActivity extends AppCompatActivity {
         sw_bluetooth.setOnCheckedChangeListener(bt_listener);
 
     }
+
+
 
 }
