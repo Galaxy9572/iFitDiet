@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.fragment.FragAdapter;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment fragment_recommend, fragment_health, fragment_locate, fragment_group;
     private List<Fragment> fragList;
     private FragAdapter fragAdapter;
+    private boolean isRegister, isLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View view=getLayoutInflater().inflate(R.layout.nav_header_main,null).findViewById(R.id.iv_navi);
+        ImageView iv_navi= (ImageView) view.findViewById(R.id.iv_navi);
+        iv_navi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("点击了_________________________________________________________");
+                if (!isLogin) {
+                    startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
+                }
+            }
+        });
+
         vp = (ViewPager) findViewById(R.id.viewpager);
         fragList = new ArrayList<Fragment>();
         fragList.add(new RecommendFragment());
@@ -64,7 +79,6 @@ public class MainActivity extends AppCompatActivity
         vp.setCurrentItem(0);
 
 
-
     }
 
     @Override
@@ -72,7 +86,6 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.toolbar_main_activity, menu);
         return true;
     }
-
 
     @Override
     public void onBackPressed() {
@@ -94,6 +107,10 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    protected void register(View v) {
+        startActivity(new Intent().setClass(this, RegisterActivity.class));
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -101,9 +118,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-            startActivity(new Intent().setClass(this, LoginActivity.class));
+
         } else if (id == R.id.nav_myinfo) {
-            startActivity(new Intent().setClass(this, RegisterActivity.class));
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_social) {

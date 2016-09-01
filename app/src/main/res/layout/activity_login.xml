@@ -82,5 +82,16 @@
         android:background="@color/white"
         android:onClick="login"
         android:text="登录" />
+    <Button
+        android:id="@+id/bt_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/iv_avator"
+        android:layout_below="@id/bt_login"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:onClick="register"
+        android:text="注册" />
 
 </RelativeLayout>
