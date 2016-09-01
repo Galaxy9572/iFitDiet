@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity
         vp.setAdapter(fragAdapter);
         vp.setCurrentItem(0);
 
+
+
     }
 
     @Override
