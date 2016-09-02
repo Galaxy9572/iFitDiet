@@ -17,7 +17,7 @@
         android:layout_height="1dip"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="5dip"
-        android:background="@color/light_grey" />
+        android:background="@color/light_gray" />
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"
