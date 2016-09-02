@@ -10,7 +10,7 @@ public class RegisterUserBean {
     private String userName;
     private int sex;
     private String psw;
-    private String tel;
+    private String phone;
     private Image avatar;
     private String email;
     private String birthday;
@@ -43,12 +43,12 @@ public class RegisterUserBean {
         this.psw = psw;
     }
 
-    public String getTel() {
-        return tel;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Image getAvatar() {

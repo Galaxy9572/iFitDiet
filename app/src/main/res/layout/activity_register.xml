@@ -168,14 +168,14 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="省：" />
+                android:hint="省：（必填）" />
 
             <EditText
                 android:id="@+id/et_city"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="市：" />
+                android:hint="市：（必填）" />
 
         </LinearLayout>
 
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:editable="false"
                 android:ems="11"
-                android:hint="生日：" />
+                android:hint="生日：（必填）" />
 
         </LinearLayout>
 
