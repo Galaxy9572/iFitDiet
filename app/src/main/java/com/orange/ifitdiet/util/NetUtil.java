@@ -7,19 +7,17 @@ import com.orange.ifitdiet.domain.LoginUserBean;
 import com.orange.ifitdiet.domain.RegisterUserBean;
 
 import org.apache.http.Header;
-import org.apache.http.protocol.HTTP;
 
 /**
  * Created by 廖俊瑶 on 2016/9/2.
  */
 public class NetUtil {
-    private String server_url="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=register";
     private AsyncHttpClient client = new AsyncHttpClient();
     private boolean isRegistered = false;
 
     public boolean register(RegisterUserBean userBean){
+        String reg_url ="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=register";
         RequestParams params=new RequestParams();
-        params.setContentEncoding(HTTP.UTF_8);
         params.put("username",userBean.getUserName());
         params.put("sex",userBean.getSex());
         params.put("password",userBean.getPsw());
@@ -28,7 +26,7 @@ public class NetUtil {
         params.put("email",userBean.getEmail());
         params.put("hometown",userBean.getHometown());
         params.put("birthday",userBean.getBirthday());
-        client.post(server_url, params, new AsyncHttpResponseHandler() {
+        client.post(reg_url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 isRegistered =true;
@@ -42,7 +40,7 @@ public class NetUtil {
         return isRegistered;
     }
     public boolean login(LoginUserBean userBean){
-
+        String reg_url ="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=login";
 
         return false;
     }
