@@ -1,20 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="com.orange.ifitdiet.fragment.LocateFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Locate fragment" />
-
+    android:background="@color/light_gray"
+    tools:context="com.orange.ifitdiet.fragment.HealthFragment">
     <ListView
+        android:id="@+id/lv_locate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:padding="10dp"
+        android:scrollbarStyle="outsideOverlay"
+        tools:listitem="@layout/health_list_item_card"
+        />
 
-    </ListView>
-
-</FrameLayout>
+</RelativeLayout>

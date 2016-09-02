@@ -30,10 +30,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private ViewPager vp;
     private Fragment fragment_recommend, fragment_health, fragment_locate, fragment_group;
-    private List<Fragment> fragList;
-    private FragAdapter fragAdapter;
     private boolean isRegister, isLogin;
 
     @Override
@@ -45,7 +42,9 @@ public class MainActivity extends AppCompatActivity
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("iFitDiet");
+        if (toolbar != null) {
+            toolbar.setTitle("iFitDiet");
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -67,17 +66,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        vp = (ViewPager) findViewById(R.id.viewpager);
-        fragList = new ArrayList<Fragment>();
+        ViewPager vp = (ViewPager) findViewById(R.id.viewpager);
+        List<Fragment> fragList = new ArrayList<Fragment>();
         fragList.add(new RecommendFragment());
         fragList.add(new HealthFragment());
         fragList.add(new LocateFragment());
         fragList.add(new GroupFragment());
 
-        fragAdapter = new FragAdapter(getSupportFragmentManager(), fragList);
-        vp.setAdapter(fragAdapter);
-        vp.setCurrentItem(0);
-
+        FragAdapter fragAdapter = new FragAdapter(getSupportFragmentManager(), fragList);
+        if (vp != null) {
+            vp.setAdapter(fragAdapter);
+            vp.setCurrentItem(0);
+        }
 
     }
 
