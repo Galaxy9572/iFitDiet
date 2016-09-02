@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-
+            startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
         } else if (id == R.id.nav_myinfo) {
 
         } else if (id == R.id.nav_share) {

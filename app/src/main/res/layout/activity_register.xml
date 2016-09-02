@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_avator"
+            android:id="@+id/iv_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentTop="true"
@@ -30,7 +30,7 @@
             android:id="@+id/line_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_avator"
+            android:layout_below="@id/iv_avatar"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal">
 
@@ -38,14 +38,56 @@
                 android:id="@+id/et_username"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="用户名：" />
+                android:hint="用户名：（必填）" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_sex"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line_username"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            >
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="性别："
+                android:textSize="20sp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="男"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="女"
+                    />
+
+            </RadioGroup>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/line_psw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line_username"
+            android:layout_below="@id/line_sex"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal">
 
@@ -53,7 +95,7 @@
                 android:id="@+id/et_psw"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="密码："
+                android:hint="密码：（必填）"
                 android:inputType="textPassword"
                 android:maxEms="16"
                 android:minEms="8" />
@@ -71,7 +113,7 @@
                 android:id="@+id/et_cfpsw"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="确认密码："
+                android:hint="确认密码：（必填）"
                 android:inputType="textPassword"
                 android:maxEms="16"
                 android:minEms="8" />
@@ -90,7 +132,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="手机："
+                android:hint="手机：（必填）"
                 android:inputType="number" />
         </LinearLayout>
 
@@ -111,29 +153,13 @@
                 android:inputType="textEmailAddress" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/line_birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line_email"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal">
 
-            <EditText
-                android:id="@+id/et_birthday"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:ems="11"
-                android:hint="生日："
-                android:editable="false"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/line_hometown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line_birthday"
+            android:layout_below="@id/line_email"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal">
 
@@ -142,14 +168,32 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="省："/>
+                android:hint="省：" />
 
             <EditText
                 android:id="@+id/et_city"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="市："/>
+                android:hint="市：" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line_hometown"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/et_birthday"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:ems="11"
+                android:hint="生日：" />
 
         </LinearLayout>
 
@@ -157,12 +201,12 @@
             android:id="@+id/btn_birth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_below="@id/line_birthday"
             android:layout_centerHorizontal="true"
-            android:onClick="chooseDate"
             android:layout_marginTop="20dp"
-            android:text="选择日期"
-            android:layout_below="@id/line_hometown"/>
+            android:background="@color/white"
+            android:onClick="chooseDate"
+            android:text="选择日期" />
 
         <Button
             android:id="@+id/button"
@@ -172,7 +216,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@color/white"
-            android:text="提交" />
+            android:text="提交"
+            android:onClick="register"/>
 
     </RelativeLayout>
 </ScrollView>

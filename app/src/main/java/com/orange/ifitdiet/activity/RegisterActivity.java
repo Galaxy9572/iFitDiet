@@ -12,9 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.orange.ifitdiet.R;
+import com.orange.ifitdiet.domain.RegisterUserBean;
+import com.orange.ifitdiet.util.NetUtil;
 
 import java.io.FileNotFoundException;
 
@@ -25,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Button btn_birth = (Button) findViewById(R.id.btn_birth);
-        ImageView iv_avator= (ImageView) findViewById(R.id.iv_avator);
+        ImageView iv_avator = (ImageView) findViewById(R.id.iv_avatar);
         iv_avator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,11 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
             ContentResolver cr = this.getContentResolver();
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                ImageView imageView = (ImageView) findViewById(R.id.iv_avator);
+                ImageView imageView = (ImageView) findViewById(R.id.iv_avatar);
                 /* 将Bitmap设定到ImageView */
                 imageView.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
-                Log.e("Exception", e.getMessage(),e);
+                Log.e("Exception", e.getMessage(), e);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -66,4 +70,19 @@ public class RegisterActivity extends AppCompatActivity {
         }, 2016, 0, 1).show();
     }
 
+    protected void register(View v) {
+        EditText et_userName = (EditText) findViewById(R.id.et_username);
+        RadioButton rb_male = (RadioButton) findViewById(R.id.rb_male);
+        RadioButton rb_female = (RadioButton) findViewById(R.id.rb_female);
+        RegisterUserBean userBean = new RegisterUserBean();
+        userBean.setUserName(et_userName.getText().toString().trim());
+        if (rb_male.isSelected()) {
+            userBean.setSex(0);
+        } else {
+            userBean.setSex(1);
+        }
+        //TODO
+
+        new NetUtil().register(userBean);
+    }
 }

@@ -10,7 +10,7 @@
     tools:context=".activity.LoginActivity">
 
     <ImageView
-        android:id="@+id/iv_avator"
+        android:id="@+id/iv_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         android:id="@+id/line_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_avator"
+        android:layout_below="@id/iv_avatar"
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal">
 
@@ -75,7 +75,7 @@
         android:id="@+id/bt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/iv_avator"
+        android:layout_alignEnd="@+id/iv_avatar"
         android:layout_below="@id/cb_remember"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
@@ -86,7 +86,7 @@
         android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/iv_avator"
+        android:layout_alignEnd="@+id/iv_avatar"
         android:layout_below="@id/bt_login"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"

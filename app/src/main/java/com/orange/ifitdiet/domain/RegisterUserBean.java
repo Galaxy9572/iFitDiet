@@ -1,13 +1,14 @@
-package com.orange.ifitdiet.bean;
+package com.orange.ifitdiet.domain;
 
 import android.media.Image;
 
 /**
  * Created by 廖俊瑶 on 2016/9/2.
  */
-public class UserBean {
+public class RegisterUserBean {
     private int UUID;
     private String userName;
+    private int sex;
     private String psw;
     private String tel;
     private Image avatar;
@@ -15,7 +16,7 @@ public class UserBean {
     private String birthday;
     private String hometown;
 
-    public UserBean() {
+    public RegisterUserBean() {
     }
 
     public int getUUID() {
@@ -80,5 +81,13 @@ public class UserBean {
 
     public void setHometown(String hometown) {
         this.hometown = hometown;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }
