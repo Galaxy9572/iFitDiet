@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
+import com.orange.ifitdiet.domain.LoginUserBean;
+import com.orange.ifitdiet.util.NetUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,23 +35,33 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void readAccount(){
-        et_username.setText(sp.getString("username",""));
+        et_username.setText(sp.getString("userName",""));
         et_psw.setText(sp.getString("psw",""));
         cb_remember.setChecked(sp.getBoolean("isChecked",false));
     }
 
     protected void login(View v){
-        cb_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(cb_remember.isChecked()){
-                    editor.putBoolean("isChecked",true);
-                    editor.putString("username",et_username.getText().toString());
-                    editor.putString("psw",et_psw.toString());
-                    editor.commit();
+        final String userName=et_username.getText().toString().trim();
+        final String psw=et_psw.getText().toString().trim();
+        LoginUserBean userBean=new LoginUserBean();
+        userBean.setUserName(userName);
+        userBean.setPsw(psw);
+        boolean success=new NetUtil().login(userBean);
+        if(success) {
+            Toast.makeText(this, "登录成功！", Toast.LENGTH_SHORT).show();
+            cb_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(cb_remember.isChecked()){
+                        editor.putBoolean("isChecked",true);
+                        editor.putString("userName",userName);
+                        editor.putString("psw",psw);
+                        editor.commit();
+                    }
                 }
-            }
-        });
-        Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+            });
+        }else{
+            Toast.makeText(this, "登录失败！", Toast.LENGTH_SHORT).show();
+        }
     }
 }

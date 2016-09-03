@@ -9,9 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.AboutActivity">
     <TextView
+        android:id="@+id/tv_app_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="18dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:text="应用名称：iFitDiet\n版本：1.0 Beta\nOrange团队"/>
-
+    <TextView
+        android:id="@+id/tv_rights"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_app_info"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:text="本软件使用了以下开源项目或者第三方SDK：\n高德地图定位SDK\nAsyncHttpClient"/>
 </RelativeLayout>

@@ -25,6 +25,7 @@ import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
 import com.orange.ifitdiet.fragment.LocateFragment;
 import com.orange.ifitdiet.fragment.RecommendFragment;
+import com.orange.ifitdiet.util.LocateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        regOrLogin();
+        initFragments();
+    }
 
+    private void regOrLogin() {
         View view=getLayoutInflater().inflate(R.layout.nav_header_main,null).findViewById(R.id.iv_navi);
         ImageView iv_navi= (ImageView) view.findViewById(R.id.iv_navi);
         iv_navi.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +71,12 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+    }
 
+
+
+
+    private void initFragments() {
         ViewPager vp = (ViewPager) findViewById(R.id.viewpager);
         List<Fragment> fragList = new ArrayList<Fragment>();
         fragList.add(new RecommendFragment());
@@ -79,7 +89,6 @@ public class MainActivity extends AppCompatActivity
             vp.setAdapter(fragAdapter);
             vp.setCurrentItem(0);
         }
-
     }
 
     @Override
@@ -121,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_mymsg) {
             startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
         } else if (id == R.id.nav_myinfo) {
-
+            new LocateUtil().locate(this);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_social) {

@@ -8,16 +8,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <service android:name="com.amap.api.location.APSService"></service>
+
+    <uses-feature
+    android:name="android.hardware.bluetooth_le"
+    android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -47,6 +52,9 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="登录" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b7f9778df1c327bdcc3a937cdefbcf10" />
     </application>
 
 </manifest>
