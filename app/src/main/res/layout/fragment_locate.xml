@@ -4,8 +4,17 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     tools:context="com.orange.ifitdiet.fragment.HealthFragment">
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当前位置："
+        android:textSize="20sp"
+        />
     <ListView
-        android:id="@+id/lv_locate"
+        android:id="@+id/lv_locate_business"
+        android:layout_below="@id/tv_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

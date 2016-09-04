@@ -18,6 +18,7 @@
             android:layout_height="60dp"
             app:titleTextColor="@color/white"
             />
+        <include layout="@layout/activity_main_top_tab" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

@@ -44,6 +44,7 @@ public class LocateUtil {
                         street=aMapLocation.getStreet();//街道信息
                         aMapLocation.getCityCode();//城市编码
                         aMapLocation.getAdCode();//地区编码
+                        System.out.println(street);
                         mLocationClient.stopLocation();
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -68,5 +69,45 @@ public class LocateUtil {
         mLocationClient.setLocationOption(mLocationClientOption);//给定位客户端对象设置定位参数
         mLocationClient.startLocation(); //启动定位
 
+    }
+
+    public AMapLocationClient getmLocationClient() {
+        return mLocationClient;
+    }
+
+    public void setmLocationClient(AMapLocationClient mLocationClient) {
+        this.mLocationClient = mLocationClient;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 }
