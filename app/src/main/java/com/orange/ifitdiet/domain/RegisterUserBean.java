@@ -4,17 +4,18 @@ import android.media.Image;
 
 /**
  * Created by 廖俊瑶 on 2016/9/2.
+ * 注册使用的JavaBean
  */
 public class RegisterUserBean {
-    private int UUID;
-    private String userName;
-    private int sex;
-    private String psw;
-    private String phone;
-    private Image avatar;
-    private String email;
-    private String birthday;
-    private String hometown;
+    private int UUID;//UUID，服务器产生
+    private String userName;//用户名
+    private int sex;//性别
+    private String psw;//密码
+    private String phone;//手机号
+    private Image avatar;//头像
+    private String email;//电子邮件
+    private String birthday;//生日
+    private String hometown;//籍贯
 
     public RegisterUserBean() {
     }

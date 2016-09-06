@@ -2,10 +2,11 @@ package com.orange.ifitdiet.domain;
 
 /**
  * Created by 廖俊瑶 on 2016/9/2.
+ * 登录时用的JavaBean
  */
 public class LoginUserBean {
-    private String userName;
-    private String psw;
+    private String userName;//用户名
+    private String psw;//密码
 
     public LoginUserBean() {
     }
