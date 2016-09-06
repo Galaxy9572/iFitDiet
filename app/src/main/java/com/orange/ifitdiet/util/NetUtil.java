@@ -13,8 +13,8 @@ import org.apache.http.Header;
  * 网络连接的工具类，使用开源项目AsyncHttpClient
  */
 public class NetUtil {
-    private boolean isRegistered = false;
-    private boolean isLogin=false;
+    private boolean isRegistered = false;//是否注册成功
+    private boolean isLogin=false;//是否登陆成功
 
     public boolean register(RegisterUserBean userBean){//注册方法
         String reg_url ="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=register";//服务器地址，测试地址
