@@ -7,8 +7,9 @@
         android:id="@+id/action_share"
         android:title="分享"
         android:orderInCategory="90"
-        android:icon="@drawable/share"
+        android:icon="@drawable/share_white"
         app:showAsAction="ifRoom">
+
     </item>
 
 </menu>

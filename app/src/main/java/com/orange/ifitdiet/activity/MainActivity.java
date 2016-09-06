@@ -14,12 +14,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +37,7 @@ public class MainActivity extends AppCompatActivity
     private boolean isRegister, isLogin;
     //Tab显示内容TextView
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
-    //Tab的那个引导线
-    private ImageView iv_tabline;
     //屏幕的宽度
-    private int screenWidth;
     private ViewPager vp;
 
     @Override
@@ -65,32 +60,35 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View v = getLayoutInflater().inflate(R.layout.activity_main_top_tab, null);
-        iv_tabline = (ImageView) v.findViewById(R.id.id_tab_line_iv);
-        tv_tab_health = (TextView) v.findViewById(R.id.id_locate_tv);
-        tv_tab_recommend = (TextView) v.findViewById(R.id.id_recommend_tv);
-        tv_tab_locate = (TextView) v.findViewById(R.id.id_health_tv);
-        tv_tab_group = (TextView) v.findViewById(R.id.id_group_tv);
+        initFragments();
+        initComponents();
+    }
+
+    private void initComponents() {
+        View v_1 = getLayoutInflater().inflate(R.layout.activity_main_top_tab, null);
+        tv_tab_recommend = (TextView) v_1.findViewById(R.id.tv_tab_recommend);
+        tv_tab_health = (TextView) v_1.findViewById(R.id.tv_tab_health);
+        tv_tab_locate = (TextView) v_1.findViewById(R.id.tv_tab_locate);
+        tv_tab_group = (TextView) v_1.findViewById(R.id.tv_tab_group);
 
         tv_tab_recommend.setOnClickListener(new TabOnClickListener(0));
         tv_tab_health.setOnClickListener(new TabOnClickListener(1));
         tv_tab_locate.setOnClickListener(new TabOnClickListener(2));
         tv_tab_group.setOnClickListener(new TabOnClickListener(3));
-        regOrLogin();
-        initFragments();
-        initTabLineWidth();
-    }
 
-    private void regOrLogin() {
-        View view = getLayoutInflater().inflate(R.layout.nav_header_main, null).findViewById(R.id.iv_navi);
-        ImageView iv_navi = (ImageView) view.findViewById(R.id.iv_navi);
-        iv_navi.setOnClickListener(new View.OnClickListener() {
+        View v_2 = getLayoutInflater().inflate(R.layout.nav_header_main, null);
+        Button bt_register = (Button) v_2.findViewById(R.id.bt_register);
+        bt_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("点击了_________________________________________________________");
-                if (!isLogin) {
-                    startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
-                }
+                startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
+            }
+        });
+        Button bt_login = (Button) v_2.findViewById(R.id.bt_login);
+        bt_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
             }
         });
     }
@@ -105,44 +103,41 @@ public class MainActivity extends AppCompatActivity
         fragList.add(new GroupFragment());
         vp.setCurrentItem(0);
         FragAdapter fragAdapter = new FragAdapter(getSupportFragmentManager(), fragList);
-        if (vp != null) {
-            vp.setAdapter(fragAdapter);
-            vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) iv_tabline
-                            .getLayoutParams();
-                    //返回组件距离左侧组件的距离
-                    lp.leftMargin = (int) ((positionOffset + position) * screenWidth / 4);
-                    iv_tabline.setLayoutParams(lp);
+        vp.setAdapter(fragAdapter);
+
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                resetTextView();
+                switch (position) {
+                    case 0:
+                        tv_tab_recommend.setTextColor(Color.WHITE);
+                        Toast.makeText(MainActivity.this,"0",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        tv_tab_health.setTextColor(Color.WHITE);
+                        Toast.makeText(MainActivity.this,"1",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        tv_tab_locate.setTextColor(Color.WHITE);
+                        Toast.makeText(MainActivity.this,"2",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        tv_tab_group.setTextColor(Color.WHITE);
+                        Toast.makeText(MainActivity.this,"3",Toast.LENGTH_SHORT).show();
+                        break;
                 }
+            }
 
-                @Override
-                public void onPageSelected(int position) {
-                    resetTextView();
-                    switch (position) {
-                        case 0:
-                            tv_tab_recommend.setTextColor(Color.WHITE);
-                            break;
-                        case 1:
-                            tv_tab_health.setTextColor(Color.WHITE);
-                            break;
-                        case 2:
-                            tv_tab_locate.setTextColor(Color.WHITE);
-                            break;
-                        case 3:
-                            tv_tab_group.setTextColor(Color.WHITE);
-                            break;
-                    }
-                }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
 
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });
-
-        }
     }
 
     @Override
@@ -159,16 +154,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    private void initTabLineWidth() {
-        DisplayMetrics dpMetrics = new DisplayMetrics();
-        getWindow().getWindowManager().getDefaultDisplay()
-                .getMetrics(dpMetrics);
-        screenWidth = dpMetrics.widthPixels;
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) iv_tabline.getLayoutParams();
-        lp.width = screenWidth / 4;
-        iv_tabline.setLayoutParams(lp);
     }
 
     private void resetTextView() {
@@ -192,6 +177,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent().setClass(this, RegisterActivity.class));
     }
 
+    protected void login(View v) {
+        startActivity(new Intent().setClass(this, LoginActivity.class));
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -199,13 +188,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-            startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
+
         } else if (id == R.id.nav_myinfo) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_social) {
-
+            startActivity(new Intent().setClass(MainActivity.this, SocialHubActivity.class));
         } else if (id == R.id.nav_about) {
             startActivity(new Intent().setClass(this, AboutActivity.class));
         } else if (id == R.id.nav_settings) {
@@ -231,14 +220,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     public class TabOnClickListener implements View.OnClickListener {
-        private int index = 0;
+        private int index;
 
         public TabOnClickListener(int i) {
             index = i;
         }
 
         public void onClick(View v) {
-            vp.setCurrentItem(index);//选择某一页
+            vp.setCurrentItem(index,true);//选择某一页
         }
 
     }

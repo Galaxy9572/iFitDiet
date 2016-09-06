@@ -31,7 +31,6 @@ public class LocateFragment extends Fragment {
         city=locateUtil.getCity();//城市信息
         district=locateUtil.getDistrict();//城区信息
         street=locateUtil.getStreet();//街道信息
-        System.out.println(street);
 //        tv_location.setText(province);
     }
 

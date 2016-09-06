@@ -23,13 +23,12 @@
             android:padding="10dip" >
 
             <TextView
-                android:id="@+id/id_recommend_tv"
+                android:id="@+id/tv_tab_recommend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="推荐"
-                android:textColor="#FFF"
-                android:textSize="15dip" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,13 +44,12 @@
             android:saveEnabled="false" >
 
             <TextView
-                android:id="@+id/id_health_tv"
+                android:id="@+id/tv_tab_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="健康"
-                android:textColor="#000000"
-                android:textSize="15dip" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,13 +64,12 @@
             android:padding="10dip" >
 
             <TextView
-                android:id="@+id/id_locate_tv"
+                android:id="@+id/tv_tab_locate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="附近"
-                android:textColor="#000000"
-                android:textSize="15dip" />
+                android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/id_tab_group_ll"
@@ -86,27 +83,14 @@
             android:padding="10dip" >
 
             <TextView
-                android:id="@+id/id_group_tv"
+                android:id="@+id/tv_tab_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="群组"
-                android:textColor="#000000"
-                android:textSize="15dip" />
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/id_tab_line_iv"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="tab"
-        android:background="@drawable/tab_selected_pressed_holo" >
-    </ImageView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#FFF" />
 
 </LinearLayout>

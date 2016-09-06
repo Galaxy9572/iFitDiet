@@ -16,13 +16,13 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <service android:name="com.amap.api.location.APSService"></service>
+    <service android:name="com.amap.api.location.APSService" />
 
     <uses-feature
-    android:name="android.hardware.bluetooth_le"
-    android:required="true" />
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -52,9 +52,15 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="登录" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="b7f9778df1c327bdcc3a937cdefbcf10" />
+
+        <activity
+            android:name=".activity.SocialHubActivity"
+            android:label="社交圈"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
