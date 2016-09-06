@@ -60,16 +60,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initFragments();
-        initComponents();
+        initFragments();//初始化fragments
+        initComponents();//初始化一些按钮、TextView等组件
     }
 
     private void initComponents() {
         View v_1 = getLayoutInflater().inflate(R.layout.activity_main_top_tab, null);
-        tv_tab_recommend = (TextView) v_1.findViewById(R.id.tv_tab_recommend);
-        tv_tab_health = (TextView) v_1.findViewById(R.id.tv_tab_health);
-        tv_tab_locate = (TextView) v_1.findViewById(R.id.tv_tab_locate);
-        tv_tab_group = (TextView) v_1.findViewById(R.id.tv_tab_group);
+        tv_tab_recommend = (TextView) v_1.findViewById(R.id.tv_tab_recommend);//MainActivity顶部的推荐tab
+        tv_tab_health = (TextView) v_1.findViewById(R.id.tv_tab_health);//MainActivity顶部的健康tab
+        tv_tab_locate = (TextView) v_1.findViewById(R.id.tv_tab_locate);//MainActivity顶部的附近tab
+        tv_tab_group = (TextView) v_1.findViewById(R.id.tv_tab_group);//MainActivity顶部的群组tab
 
         tv_tab_recommend.setOnClickListener(new TabOnClickListener(0));
         tv_tab_health.setOnClickListener(new TabOnClickListener(1));
@@ -77,14 +77,14 @@ public class MainActivity extends AppCompatActivity
         tv_tab_group.setOnClickListener(new TabOnClickListener(3));
 
         View v_2 = getLayoutInflater().inflate(R.layout.nav_header_main, null);
-        Button bt_register = (Button) v_2.findViewById(R.id.bt_register);
+        Button bt_register = (Button) v_2.findViewById(R.id.bt_register);//MainActivity左滑导航栏中的注册按钮
         bt_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
             }
         });
-        Button bt_login = (Button) v_2.findViewById(R.id.bt_login);
+        Button bt_login = (Button) v_2.findViewById(R.id.bt_login);//MainActivity左滑导航栏中的登录按钮
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,15 +95,16 @@ public class MainActivity extends AppCompatActivity
 
 
     private void initFragments() {
-        vp = (ViewPager) findViewById(R.id.viewpager);
+        vp = (ViewPager) findViewById(R.id.viewpager);//找到ViewPager
         List<Fragment> fragList = new ArrayList<Fragment>();
+        //将四个fragment添加到界面
         fragList.add(new RecommendFragment());
         fragList.add(new HealthFragment());
         fragList.add(new LocateFragment());
         fragList.add(new GroupFragment());
         vp.setCurrentItem(0);
         FragAdapter fragAdapter = new FragAdapter(getSupportFragmentManager(), fragList);
-        vp.setAdapter(fragAdapter);
+        vp.setAdapter(fragAdapter);//给ViewPager设置Adapter
 
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
