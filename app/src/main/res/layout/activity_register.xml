@@ -193,26 +193,18 @@
                 android:layout_height="wrap_content"
                 android:editable="false"
                 android:ems="11"
+                android:onClick="chooseDate"
                 android:hint="生日：（必填）" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_birth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line_birthday"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@color/white"
-            android:onClick="chooseDate"
-            android:text="选择日期" />
+
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_birth"
+            android:layout_below="@+id/line_birthday"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@color/white"

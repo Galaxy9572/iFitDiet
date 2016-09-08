@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
+import com.orange.ifitdiet.domain.StatesBean;
 import com.orange.ifitdiet.fragment.FragAdapter;
 import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
@@ -33,12 +34,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Fragment fragment_recommend, fragment_health, fragment_locate, fragment_group;
     private boolean isRegister, isLogin;
     //Tab显示内容TextView
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
     //屏幕的宽度
     private ViewPager vp;
+    private static StatesBean statesBean;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        statesBean=new StatesBean();
         initFragments();//初始化fragments
         initComponents();//初始化一些按钮、TextView等组件
 
@@ -193,9 +196,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-
-        } else if (id == R.id.nav_myinfo) {
-
+            startActivity(new Intent().setClass(MainActivity.this, MyMsgActivity.class));
+        } else if (id == R.id.nav_personal_info) {
+            startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_social) {
@@ -235,5 +238,9 @@ public class MainActivity extends AppCompatActivity
             vp.setCurrentItem(index,true);//选择某一页
         }
 
+    }
+
+    public static StatesBean getStatesBean() {
+        return statesBean;
     }
 }

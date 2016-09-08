@@ -70,7 +70,7 @@ public class NetUtil {
     }
 
     public void getUserInfo(){
-
+        //TODO
     }
 
 }

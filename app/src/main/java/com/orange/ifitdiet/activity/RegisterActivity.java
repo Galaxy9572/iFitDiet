@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,9 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Button btn_birth = (Button) findViewById(R.id.btn_birth);
-        ImageView iv_avator = (ImageView) findViewById(R.id.iv_avatar);
-        iv_avator.setOnClickListener(new View.OnClickListener() {
+        ImageView iv_avatar = (ImageView) findViewById(R.id.iv_avatar);
+        iv_avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();

@@ -3,14 +3,16 @@ package com.orange.ifitdiet.domain;
 /**
  * Created by 廖俊瑶 on 2016/9/8.
  */
-public class LocationBean {
+public class StatesBean {
 
     private String province;//省
     private String city;//市
     private String district;//区
     private String street;//街道
+    private boolean isLogin;
+    private boolean isRegister;
 
-    public LocationBean(String province, String city, String district, String street) {
+    public StatesBean() {
         this.province = province;
         this.city = city;
         this.district = district;
@@ -31,5 +33,21 @@ public class LocationBean {
 
     public String getStreet() {
         return street;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+    }
+
+    public boolean isRegister() {
+        return isRegister;
+    }
+
+    public void setRegister(boolean register) {
+        isRegister = register;
     }
 }

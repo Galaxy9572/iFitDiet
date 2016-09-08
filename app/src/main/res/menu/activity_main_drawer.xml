@@ -6,8 +6,8 @@
         android:icon="@drawable/mymsg"
         android:title="我的消息" />
     <item
-        android:id="@+id/nav_myinfo"
-        android:icon="@drawable/myinfo"
+        android:id="@+id/nav_personal_info"
+        android:icon="@drawable/personalinfo"
         android:title="个人信息" />
     <item
         android:id="@+id/nav_share"
