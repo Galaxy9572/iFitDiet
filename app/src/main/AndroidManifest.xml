@@ -60,7 +60,9 @@
         <activity
             android:name=".activity.SocialHubActivity"
             android:label="社交圈"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.PersonalInfoActivity" />
+        <activity android:name=".activity.MyMsgActivity"></activity>
     </application>
 
 </manifest>

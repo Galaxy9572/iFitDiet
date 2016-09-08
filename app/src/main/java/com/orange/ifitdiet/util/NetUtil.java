@@ -4,7 +4,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orange.ifitdiet.domain.LoginUserBean;
-import com.orange.ifitdiet.domain.RegisterUserBean;
+import com.orange.ifitdiet.domain.UserBean;
 
 import org.apache.http.Header;
 
@@ -13,11 +13,11 @@ import org.apache.http.Header;
  * 网络连接的工具类，使用开源项目AsyncHttpClient
  */
 public class NetUtil {
-    private boolean isRegistered = false;//是否注册成功
-    private boolean isLogin=false;//是否登陆成功
+    private boolean isRegistered ;//是否注册成功
+    private boolean isLogin;//是否登陆成功
 
-    public boolean register(RegisterUserBean userBean){//注册方法
-        String reg_url ="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=register";//服务器地址，测试地址
+    public boolean register(UserBean userBean){//注册方法
+        String reg_url ="http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=register";//服务器地址，测试地址
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params=new RequestParams();
         //将注册信息添加到参数中
@@ -43,7 +43,7 @@ public class NetUtil {
         return isRegistered;
     }
     public boolean login(LoginUserBean userBean){//登陆方法
-        String reg_url ="http://172.30.168.1:8080/iFitDiet2/AccountServlet?cmd=login";
+        String reg_url ="http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=login";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params=new RequestParams();
         params.put("username",userBean.getUserName());
@@ -51,15 +51,26 @@ public class NetUtil {
         client.post(reg_url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                isLogin =true;
+                if(statusCode==200){
+                    isLogin=true;
+                    System.out.println("ONSUCCESS+++++++++++++"+isLogin);
+                    System.out.println( "RESPONSEBODY"+new String(responseBody));
+
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                isLogin=false;
+
             }
+
         });
+        System.out.println("RETURN++++++++++++++++++++++++++++++++++++++++++"+isLogin);
         return isLogin;
+    }
+
+    public void getUserInfo(){
+
     }
 
 }

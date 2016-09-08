@@ -2,17 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray"
-    tools:context="com.orange.ifitdiet.fragment.HealthFragment">
-    <ListView
-        android:id="@+id/lv_recommend"
+    tools:context="com.orange.ifitdiet.fragment.RecommendFragment">
+
+    <TextView
+        android:id="@+id/tv_today_rec"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:padding="10dp"
-        android:scrollbarStyle="outsideOverlay"
-        tools:listitem="@layout/health_list_item_card"
+        android:textSize="16sp"
+        android:text="今日推荐"
         />
+    <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/rvp_today"
+        android:layout_below="@id/tv_today_rec"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:rollviewpager_play_delay="1000"/>
 
 </RelativeLayout>

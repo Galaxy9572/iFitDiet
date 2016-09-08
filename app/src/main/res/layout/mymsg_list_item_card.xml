@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/socialhub_card_text"
+        android:id="@+id/mymsg_card_text"
         style="@style/ListItemText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <View
-        android:id="@+id/grouplist_card_seperator"
+        android:id="@+id/mymsg_card_seperator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginLeft="5dip"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/socialhub_card_forward"
+            android:id="@+id/mymsg_card_readed"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,12 +33,12 @@
             android:layout_weight="1"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:text="转发"
+            android:text="已读"
             android:textSize="12sp"
             android:textStyle="normal" />
 
         <Button
-            android:id="@+id/socialhub_card_good"
+            android:id="@+id/mymsg_card_exit"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:layout_weight="1"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:text="赞"
+            android:text="删除"
             android:textSize="12sp"
             android:textStyle="normal" />
     </LinearLayout>

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initFragments() {
         vp = (ViewPager) findViewById(R.id.viewpager);//找到ViewPager
-        List<Fragment> fragList = new ArrayList<Fragment>();
+        List<Fragment> fragList = new ArrayList<>();
         //将四个fragment添加到界面
         fragList.add(new RecommendFragment());
         fragList.add(new HealthFragment());

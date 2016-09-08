@@ -19,7 +19,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
-import com.orange.ifitdiet.domain.RegisterUserBean;
+import com.orange.ifitdiet.domain.UserBean;
 import com.orange.ifitdiet.util.NetUtil;
 
 import java.io.FileNotFoundException;
@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email=et_email.getText().toString().trim();
         String hometown=et_province.getText()+et_city.getText().toString().trim();
         String birthday=et_birthday.getText().toString();
-        RegisterUserBean userBean = new RegisterUserBean();
+        UserBean userBean = new UserBean();
         if(!userBean.equals("")) {
             userBean.setUserName(userName);
         }else{
