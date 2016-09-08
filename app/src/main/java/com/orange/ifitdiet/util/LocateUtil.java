@@ -34,8 +34,7 @@ public class LocateUtil {
                         aMapLocation.getLatitude();//获取经度
                         aMapLocation.getLongitude();//获取纬度
                         aMapLocation.getAccuracy();//获取精度信息
-                        SimpleDateFormat df = new SimpleDateFormat(
-                                "yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         Date date = new Date(aMapLocation.getTime());
                         df.format(date);//定位时间
                         aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果
@@ -45,7 +44,6 @@ public class LocateUtil {
                         street=aMapLocation.getStreet();//街道信息
                         aMapLocation.getCityCode();//城市编码
                         aMapLocation.getAdCode();//地区编码
-                        System.out.println(street);
                         mLocationClient.stopLocation();
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。

@@ -21,6 +21,11 @@ public class RecommendFragment extends Fragment {
     }
 
     @Override
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -34,31 +39,33 @@ public class RecommendFragment extends Fragment {
         prv.setAdapter(new TestNormalAdapter());
 
         //设置指示器（顺序依次）
-        prv.setHintView(new IconHintView(this.getActivity(),R.drawable.point_select,R.drawable.point_normal));
+        prv.setHintView(new IconHintView(this.getActivity(), R.drawable.point_select, R.drawable.point_normal));
+
         return inflater.inflate(R.layout.fragment_recommend, container, false);
     }
 
-    class TestNormalAdapter extends StaticPagerAdapter {
-        private int[] imgs = {
-                R.drawable.pic1,
-                R.drawable.pic2,
-                R.drawable.pic3,
-                R.drawable.pic4,
-        };
+}
+
+class TestNormalAdapter extends StaticPagerAdapter {
+    private int[] imgs = {
+            R.drawable.pic1,
+            R.drawable.pic2,
+            R.drawable.pic3,
+            R.drawable.pic4,
+    };
 
 
-        @Override
-        public View getView(ViewGroup container, int position) {
-            ImageView view = new ImageView(container.getContext());
-            view.setImageResource(imgs[position]);
-            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            return view;
-        }
+    @Override
+    public View getView(ViewGroup container, int position) {
+        ImageView view = new ImageView(container.getContext());
+        view.setImageResource(imgs[position]);
+        view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        return view;
+    }
 
 
-        public int getCount() {
-            return imgs.length;
-        }
+    public int getCount() {
+        return imgs.length;
     }
 }

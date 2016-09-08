@@ -17,6 +17,7 @@ public class LocateFragment extends Fragment {
     private String city;//市
     private String district;//区
     private String street;//街道
+    private LocateUtil locateUtil;
 
     public LocateFragment() {
         // Required empty public constructor
@@ -25,13 +26,8 @@ public class LocateFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LocateUtil locateUtil= new LocateUtil();
-        locateUtil.locate(LocateFragment.this.getContext());
-        province=locateUtil.getProvince();//省信息
-        city=locateUtil.getCity();//城市信息
-        district=locateUtil.getDistrict();//城区信息
-        street=locateUtil.getStreet();//街道信息
-//        tv_location.setText(province);
+        locateUtil = new LocateUtil();
+        locateUtil.locate(getActivity());
     }
 
     @Override
@@ -41,6 +37,13 @@ public class LocateFragment extends Fragment {
 
         v= inflater.inflate(R.layout.fragment_locate,container, false);
         tv_location= (TextView) v.findViewById(R.id.tv_location);
+
+        province=locateUtil.getProvince();//省信息
+        city=locateUtil.getCity();//城市信息
+        district=locateUtil.getDistrict();//城区信息
+        street=locateUtil.getStreet();//街道信息
+//        tv_location.setText(province);
+        System.out.println(province+city+street);
         return v;
     }
 }

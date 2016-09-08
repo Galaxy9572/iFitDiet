@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         initFragments();//初始化fragments
         initComponents();//初始化一些按钮、TextView等组件
+
     }
 
     private void initComponents() {
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
             }
         });
+
+
+
     }
 
 
