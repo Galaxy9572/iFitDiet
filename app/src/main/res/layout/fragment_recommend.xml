@@ -1,24 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gray"
-    tools:context="com.orange.ifitdiet.fragment.RecommendFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_today_rec"
-        android:layout_marginTop="10dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="今日推荐"
-        />
-    <com.jude.rollviewpager.RollPagerView
-        android:id="@+id/rvp_today"
-        android:layout_below="@id/tv_today_rec"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:rollviewpager_play_delay="1000"/>
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        tools:context="com.orange.ifitdiet.fragment.RecommendFragment">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_today_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="今日推荐"
+            android:textSize="20sp" />
+
+        <com.orange.ifitdiet.common.MyImageView
+            android:id="@+id/iv_today_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_today_rec"
+            android:src="@drawable/pic1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_today_rec">
+            <TextView
+                android:id="@+id/tv_breakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="早餐"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <service android:name="com.amap.api.location.APSService" />
+
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -67,6 +67,8 @@
         <activity
             android:name=".activity.MyMsgActivity"
             android:label="我的消息" />
+
+        <service android:name="com.amap.api.location.APSService" />
     </application>
 
 </manifest>

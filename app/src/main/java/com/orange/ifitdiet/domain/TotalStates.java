@@ -3,7 +3,7 @@ package com.orange.ifitdiet.domain;
 /**
  * Created by 廖俊瑶 on 2016/9/8.
  */
-public class StatesBean {
+public class TotalStates {
 
     private String province;//省
     private String city;//市
@@ -12,7 +12,7 @@ public class StatesBean {
     private boolean isLogin;
     private boolean isRegister;
 
-    public StatesBean() {
+    public TotalStates() {
         this.province = province;
         this.city = city;
         this.district = district;

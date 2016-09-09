@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
-import com.orange.ifitdiet.domain.StatesBean;
+import com.orange.ifitdiet.domain.TotalStates;
 import com.orange.ifitdiet.fragment.FragAdapter;
 import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
     //屏幕的宽度
     private ViewPager vp;
-    private static StatesBean statesBean;
+    private static TotalStates totalStates;
 
 
     @Override
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        statesBean=new StatesBean();
+        totalStates =new TotalStates();
         initFragments();//初始化fragments
         initComponents();//初始化一些按钮、TextView等组件
 
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public static StatesBean getStatesBean() {
-        return statesBean;
+    public static TotalStates getTotalStates() {
+        return totalStates;
     }
 }
