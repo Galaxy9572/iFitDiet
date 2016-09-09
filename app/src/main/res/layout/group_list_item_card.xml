@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/selectable_background"
     android:orientation="vertical" >
-
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/group"
+        android:id="@+id/iv_group"/>
     <TextView
         android:id="@+id/grouplist_card_text"
         style="@style/ListItemText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_group"
+        android:layout_alignTop="@id/iv_group"
+        android:layout_alignBottom="@id/iv_group"
+        android:text="人数：3"
+        android:textAlignment="viewEnd"
+        android:textSize="16sp"/>
 
     <View
         android:id="@+id/grouplist_card_seperator"
@@ -22,13 +32,15 @@
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_group">
 
         <Button
             android:id="@+id/grouplist_card_invite"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_margin="5dip"
             android:layout_weight="1"
             android:focusable="false"
@@ -51,4 +63,4 @@
             android:textStyle="normal" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

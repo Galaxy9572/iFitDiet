@@ -26,7 +26,7 @@ public class LocateFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        locateUtil = new LocateUtil();
+        locateUtil = new LocateUtil(getActivity());
         locateUtil.locate(getActivity());
     }
 

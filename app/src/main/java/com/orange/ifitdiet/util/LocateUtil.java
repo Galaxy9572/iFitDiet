@@ -7,6 +7,11 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.services.weather.LocalWeatherForecastResult;
+import com.amap.api.services.weather.LocalWeatherLive;
+import com.amap.api.services.weather.LocalWeatherLiveResult;
+import com.amap.api.services.weather.WeatherSearch;
+import com.amap.api.services.weather.WeatherSearchQuery;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,11 +21,16 @@ import java.util.Date;
  * 定位工具类，使用高德定位SDK
  */
 public class LocateUtil {
+    private Context context;
     private AMapLocationClient mLocationClient;//声明AMapLocationClient类对象
     private String province;//省
     private String city;//市
     private String district;//区
     private String street;//街道
+
+    public LocateUtil(Context context) {
+        this.context=context;
+    }
 
     public void locate(Context context) {
         mLocationClient = new AMapLocationClient(context);//初始化定位
@@ -38,10 +48,10 @@ public class LocateUtil {
                         Date date = new Date(aMapLocation.getTime());
                         df.format(date);//定位时间
                         aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果
-                        province=aMapLocation.getProvince();//省信息
-                        city=aMapLocation.getCity();//城市信息
-                        district=aMapLocation.getDistrict();//城区信息
-                        street=aMapLocation.getStreet();//街道信息
+                        province = aMapLocation.getProvince();//省信息
+                        city = aMapLocation.getCity();//城市信息
+                        district = aMapLocation.getDistrict();//城区信息
+                        street = aMapLocation.getStreet();//街道信息
                         aMapLocation.getCityCode();//城市编码
                         aMapLocation.getAdCode();//地区编码
                         mLocationClient.stopLocation();
@@ -67,15 +77,33 @@ public class LocateUtil {
         mLocationClientOption.setInterval(2000);//设置定位间隔,单位毫秒,默认为2000ms
         mLocationClient.setLocationOption(mLocationClientOption);//给定位客户端对象设置定位参数
         mLocationClient.startLocation(); //启动定位
-
+        getWeatherForecast(context,city);
+        System.out.println(city+"bbbbbbbbbbbbbbbbbbbbbbb");
     }
 
-    public AMapLocationClient getmLocationClient() {
-        return mLocationClient;
-    }
 
-    public void setmLocationClient(AMapLocationClient mLocationClient) {
-        this.mLocationClient = mLocationClient;
+    public void getWeatherForecast(Context context,String city) {
+        WeatherSearchQuery weatherQuery = new WeatherSearchQuery(city,WeatherSearchQuery.WEATHER_TYPE_LIVE);
+        WeatherSearch weatherSearch = new WeatherSearch(context);
+        weatherSearch.setQuery(weatherQuery);
+        weatherSearch.setOnWeatherSearchListener(new WeatherSearch.OnWeatherSearchListener() {
+            @Override
+            public void onWeatherLiveSearched(LocalWeatherLiveResult localWeatherLiveResult, int i) {
+                if(i==1000){
+                    LocalWeatherLive liveWeather= localWeatherLiveResult.getLiveResult();
+                    System.out.println(liveWeather.getTemperature()+"aaaaaaaaaaaaaaaaaaaaaaa");
+
+                }else{
+                    Log.e("","查询天气失败");
+                }
+            }
+
+            @Override
+            public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult, int i) {
+
+            }
+        });
+        weatherSearch.searchWeatherAsyn();
     }
 
     public String getProvince() {
