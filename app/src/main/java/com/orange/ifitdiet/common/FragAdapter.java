@@ -1,4 +1,4 @@
-package com.orange.ifitdiet.fragment;
+package com.orange.ifitdiet.common;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

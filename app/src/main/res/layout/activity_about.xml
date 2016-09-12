@@ -8,18 +8,53 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.AboutActivity">
-    <TextView
-        android:id="@+id/tv_app_info"
-        android:layout_width="match_parent"
+    <com.orange.ifitdiet.common.MyImageView
+        android:id="@+id/iv_app_logo"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="应用名称：iFitDiet\n版本：1.0 Beta\nOrange团队"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/logo"/>
     <TextView
-        android:id="@+id/tv_rights"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_app_info"
+        android:layout_below="@id/iv_app_logo"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="iFitDiet"/>
+    <TextView
+        android:id="@+id/tv_app_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_app_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="V1.0 Beta"/>
+    <TextView
+        android:id="@+id/tv_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_app_version"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="橙子团队"/>
+    <TextView
+        android:id="@+id/tv_rights_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_team"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="16sp"
-        android:text="本软件使用了以下开源项目或者第三方SDK：\n高德地图定位SDK\nAsyncHttpClient"/>
+        android:text="使用的开源项目或者第三方SDK："/>
+    <TextView
+        android:id="@+id/tv_rights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_rights_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:text="高德地图定位SDK\nAsyncHttpClient"/>
 </RelativeLayout>

@@ -64,9 +64,6 @@ public class NetUtil {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     isLogin = true;
-                    System.out.println("ONSUCCESS+++++++++++++" + isLogin);
-                    System.out.println("RESPONSEBODY" + new String(responseBody));
-
                 }
             }
 

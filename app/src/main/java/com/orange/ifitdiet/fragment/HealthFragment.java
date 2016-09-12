@@ -29,11 +29,9 @@ public class HealthFragment extends Fragment {
             super.handleMessage(msg);
             total_step = StepDetector.CURRENT_STEP;
             if (Type == 1) {
-                tv_steped.setText(total_step);
-                System.out.println(total_step+"ssssssssssssssssssssssssssssssssss");
-            } else if (Type == 2) {
+                tv_steped.setText(total_step+"");
                 calories = (int) (weight * total_step * step_length * 0.01 * 0.01);
-                tv_calories_burn.setText(calories);
+                tv_calories.setText(calories+"");
             } else if (Type == 3) {
                 if (flag) {
                     flag = false;
@@ -45,7 +43,7 @@ public class HealthFragment extends Fragment {
 
     };
     private TextView tv_steped;
-    private TextView tv_calories_burn;
+    private TextView tv_calories;
 
     public HealthFragment() {
         // Required empty public constructor
@@ -63,11 +61,11 @@ public class HealthFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_health, container, false);
         tv_steped = (TextView) v.findViewById(R.id.tv_steped);
-        tv_calories_burn = (TextView) v.findViewById(R.id.tv_calories_burn);
+        tv_calories = (TextView) v.findViewById(R.id.tv_calories);
         Intent intent = new Intent(getActivity(), StepService.class);
         getActivity().startService(intent);
         mThread();
-        tv_calories_burn.setText("aaaa");
+        tv_calories.setText(calories+"");
         return v;
     }
 

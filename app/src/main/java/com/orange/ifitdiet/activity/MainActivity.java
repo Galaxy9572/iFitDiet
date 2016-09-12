@@ -22,12 +22,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
-import com.orange.ifitdiet.domain.TotalStates;
-import com.orange.ifitdiet.fragment.FragAdapter;
+import com.orange.ifitdiet.common.BeanPool;
+import com.orange.ifitdiet.common.FragAdapter;
+import com.orange.ifitdiet.common.StepService;
+import com.orange.ifitdiet.domain.LocationBean;
 import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
 import com.orange.ifitdiet.fragment.LocateFragment;
 import com.orange.ifitdiet.fragment.RecommendFragment;
+import com.orange.ifitdiet.util.LocateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +42,13 @@ public class MainActivity extends AppCompatActivity
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
     //屏幕的宽度
     private ViewPager vp;
-    private static TotalStates totalStates;
-
+    private static BeanPool beanPool=new BeanPool();
+    private LocationBean locationBean;
+    private LocateUtil locateUtil;
+    private String province;//省
+    private String city;//市
+    private String district;//区
+    private String street;//街道
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +70,29 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        totalStates =new TotalStates();
-        initFragments();//初始化fragments
         initComponents();//初始化一些按钮、TextView等组件
+        initFragments();//初始化fragments
+        initLocation();
+        Intent intent = new Intent(this, StepService.class);
+        startService(intent);
 
+    }
+
+    private void initLocation() {
+        locateUtil=new LocateUtil(this);
+        boolean isSuccess=locateUtil.locate(this);
+        if(isSuccess) {
+            province = locateUtil.getProvince();
+            city = locateUtil.getCity();//城市信息
+            district = locateUtil.getDistrict();//城区信息
+            street = locateUtil.getStreet();//街道信息
+
+            locationBean = new LocationBean(province, city, district, street);
+            beanPool.addBean("locationBean", locationBean);
+        }else{
+            locationBean = new LocationBean("", "", "", "");
+            beanPool.addBean("locationBean", locationBean);
+        }
     }
 
     private void initComponents() {
@@ -74,7 +101,6 @@ public class MainActivity extends AppCompatActivity
         tv_tab_health = (TextView) v_1.findViewById(R.id.tv_tab_health);//MainActivity顶部的健康tab
         tv_tab_locate = (TextView) v_1.findViewById(R.id.tv_tab_locate);//MainActivity顶部的附近tab
         tv_tab_group = (TextView) v_1.findViewById(R.id.tv_tab_group);//MainActivity顶部的群组tab
-
         tv_tab_recommend.setOnClickListener(new TabOnClickListener(0));
         tv_tab_health.setOnClickListener(new TabOnClickListener(1));
         tv_tab_locate.setOnClickListener(new TabOnClickListener(2));
@@ -129,6 +155,7 @@ public class MainActivity extends AppCompatActivity
                     case 1:
                         tv_tab_health.setTextColor(Color.WHITE);
                         Toast.makeText(MainActivity.this,"1",Toast.LENGTH_SHORT).show();
+                        setTheme(R.style.HealthThem);
                         break;
                     case 2:
                         tv_tab_locate.setTextColor(Color.WHITE);
@@ -177,7 +204,7 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
         return super.onOptionsItemSelected(item);
     }
 
@@ -200,7 +227,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_personal_info) {
             startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
         } else if (id == R.id.nav_share) {
-
+            startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
         } else if (id == R.id.nav_social) {
             startActivity(new Intent().setClass(MainActivity.this, SocialHubActivity.class));
         } else if (id == R.id.nav_about) {
@@ -240,7 +267,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public static TotalStates getTotalStates() {
-        return totalStates;
+    public static BeanPool getBeanPool() {
+        return beanPool;
     }
 }

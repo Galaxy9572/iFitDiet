@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/id_switch_tab_ll"
+        android:id="@+id/id_switch_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/guide_round_selector"
             android:gravity="center"
+            android:clickable="true"
             android:orientation="horizontal"
             android:padding="10dip" >
 
@@ -27,8 +27,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:clickable="true"
                 android:text="推荐"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -36,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/guide_round_selector"
             android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
@@ -48,8 +48,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:clickable="true"
                 android:text="健康"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/guide_round_selector"
             android:focusable="false"
             android:gravity="center"
             android:orientation="horizontal"
@@ -69,14 +69,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="附近"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/id_tab_group_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/guide_round_selector"
             android:focusable="false"
             android:gravity="center"
             android:orientation="horizontal"
@@ -88,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="群组"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 

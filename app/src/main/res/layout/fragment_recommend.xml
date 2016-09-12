@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/gray"
         tools:context="com.orange.ifitdiet.fragment.RecommendFragment">
 
@@ -25,18 +25,82 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_today_rec"
             android:src="@drawable/pic1" />
+
         <LinearLayout
+            android:id="@+id/line_tv_bls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_today_rec">
+
             <TextView
                 android:id="@+id/tv_breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="早餐"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="午餐"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_supper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="晚餐"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_bls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_tv_bls"
+            android:orientation="horizontal">
+
+            <com.orange.ifitdiet.common.MyImageView
+                android:id="@+id/iv_breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/pic2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_title_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_bls"
+            android:orientation="horizontal">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="早餐"
+                android:text="健康小贴士："
                 android:textSize="20sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_health_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title_tips"
+            android:text="@string/health_tips" />
     </RelativeLayout>
 </ScrollView>

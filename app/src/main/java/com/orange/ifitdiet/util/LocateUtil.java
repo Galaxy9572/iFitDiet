@@ -27,12 +27,13 @@ public class LocateUtil {
     private String city;//市
     private String district;//区
     private String street;//街道
+    private boolean isSuccess;
 
     public LocateUtil(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void locate(Context context) {
+    public boolean locate(Context context) {
         mLocationClient = new AMapLocationClient(context);//初始化定位
         AMapLocationListener mLocationListener = new AMapLocationListener() {
             @Override
@@ -54,13 +55,17 @@ public class LocateUtil {
                         street = aMapLocation.getStreet();//街道信息
                         aMapLocation.getCityCode();//城市编码
                         aMapLocation.getAdCode();//地区编码
-                        mLocationClient.stopLocation();
+                        isSuccess = true;
+                        Log.e("城市", city + isSuccess);
+                        getWeatherForecast(LocateUtil.this.context, city);
+
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError",
                                 "location Error, ErrCode:"
                                         + aMapLocation.getErrorCode() + ", errInfo:"
                                         + aMapLocation.getErrorInfo());
+                        isSuccess = false;
                     }
                 }
             }
@@ -77,24 +82,24 @@ public class LocateUtil {
         mLocationClientOption.setInterval(2000);//设置定位间隔,单位毫秒,默认为2000ms
         mLocationClient.setLocationOption(mLocationClientOption);//给定位客户端对象设置定位参数
         mLocationClient.startLocation(); //启动定位
-        getWeatherForecast(context,city);
-        System.out.println(city+"bbbbbbbbbbbbbbbbbbbbbbb");
+        Log.e("定位成功？", isSuccess + "");
+        return isSuccess;
     }
 
 
-    public void getWeatherForecast(Context context,String city) {
-        WeatherSearchQuery weatherQuery = new WeatherSearchQuery(city,WeatherSearchQuery.WEATHER_TYPE_LIVE);
+    public void getWeatherForecast(Context context, String city) {
+        WeatherSearchQuery weatherQuery = new WeatherSearchQuery(city, WeatherSearchQuery.WEATHER_TYPE_LIVE);
         WeatherSearch weatherSearch = new WeatherSearch(context);
         weatherSearch.setQuery(weatherQuery);
         weatherSearch.setOnWeatherSearchListener(new WeatherSearch.OnWeatherSearchListener() {
             @Override
             public void onWeatherLiveSearched(LocalWeatherLiveResult localWeatherLiveResult, int i) {
-                if(i==1000){
-                    LocalWeatherLive liveWeather= localWeatherLiveResult.getLiveResult();
-                    System.out.println(liveWeather.getTemperature()+"aaaaaaaaaaaaaaaaaaaaaaa");
+                if (i == 1000) {
+                    LocalWeatherLive liveWeather = localWeatherLiveResult.getLiveResult();
+                    Log.e("天气", liveWeather.getTemperature() + liveWeather.getWeather());
 
-                }else{
-                    Log.e("","查询天气失败");
+                } else {
+                    Log.e("", "查询天气失败");
                 }
             }
 

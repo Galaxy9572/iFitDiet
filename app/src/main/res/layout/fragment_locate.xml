@@ -4,18 +4,36 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     tools:context="com.orange.ifitdiet.fragment.HealthFragment">
-    <TextView
-        android:id="@+id/tv_location"
+    <ImageView
+        android:id="@+id/iv_location"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:src="@drawable/locationping"/>
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_toEndOf="@id/iv_location"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="当前位置："
         android:textSize="20sp"
         />
+    <TextView
+        android:id="@+id/tv_nearFood"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="附近的美食："
+        android:textSize="20sp"
+        />
     <ListView
         android:id="@+id/lv_locate_business"
-        android:layout_below="@id/tv_location"
+        android:layout_below="@id/tv_nearFood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

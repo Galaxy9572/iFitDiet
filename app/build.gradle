@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.orange.ifitdiet"
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
