@@ -81,6 +81,10 @@
             android:name=".activity.ShareActivity"
             android:label="将软件分享到微博"
             android:theme="@style/GroupTheme" />
+        <activity android:name="com.zf.myzxing.ShowActivity"
+            android:label="二维码如果"/>
+        <activity android:name="com.zf.myzxing.CaptureActivity"
+            android:label="二维码获取"/>
     </application>
 
 </manifest>

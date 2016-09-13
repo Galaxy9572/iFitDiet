@@ -1,9 +1,5 @@
 package com.zf.myzxing.view;
 
-import com.google.zxing.ResultPoint;
-import com.zf.myzxing.R;
-import com.zf.myzxing.camera.CameraManager;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -12,8 +8,13 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.google.zxing.ResultPoint;
+import com.zf.myzxing.R;
+import com.zf.myzxing.camera.CameraManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +43,15 @@ public final class ViewfinderView extends View {
 		super(context, attrs);
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		Resources resources = getResources();
-		maskColor = resources.getColor(R.color.viewfinder_mask);
-		resultColor = resources.getColor(R.color.result_view);
+		maskColor = ContextCompat.getColor(context,R.color.viewfinder_mask);
+		resultColor = ContextCompat.getColor(context,R.color.result_view);
 
 		// GradientDrawable、lineDrawable
 		mRect = new Rect();
-		int left = getResources().getColor(R.color.lightgreen);
-		int center = getResources().getColor(R.color.green);
-		int right = getResources().getColor(R.color.lightgreen);
-		lineDrawable = getResources().getDrawable(R.drawable.zx_code_line);
+		int left = ContextCompat.getColor(context,R.color.lightgreen);
+		int center = ContextCompat.getColor(context,R.color.green);
+		int right = ContextCompat.getColor(context,R.color.lightgreen);
+		lineDrawable = ContextCompat.getDrawable(context,R.drawable.zx_code_line);
 		mDrawable = new GradientDrawable(
 				GradientDrawable.Orientation.LEFT_RIGHT, new int[] { left,
 				left, center, right, right });

@@ -21,9 +21,9 @@
     <color name="result_text">#ffffffff</color>
     <color name="result_view">#b0000000</color>
     <color name="status_text">#ffffffff</color>
-    <color name="transparent">#00000000</color>
-    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
-    <color name="viewfinder_mask">#60000000</color>
+    <color name="transparent">#000000</color>
+    <color name="viewfinder_laser">#ffcc00</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#F00000</color>
     <color name="lightgreen">#99CC33</color>
     <color name="green">#00CC00</color>
 </resources>
