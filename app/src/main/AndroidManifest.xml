@@ -36,13 +36,14 @@
             android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AboutActivity"
             android:label="关于" />
@@ -81,10 +82,15 @@
             android:name=".activity.ShareActivity"
             android:label="将软件分享到微博"
             android:theme="@style/GroupTheme" />
-        <activity android:name="com.zf.myzxing.ShowActivity"
-            android:label="二维码如果"/>
-        <activity android:name="com.zf.myzxing.CaptureActivity"
-            android:label="二维码获取"/>
+
+        <activity android:name=".activity.BreakfastActivity"
+            android:label="早餐推荐"/>
+        <activity android:name=".activity.LunchActivity"
+            android:label="午餐推荐"/>
+        <activity android:name=".activity.SupperActivity"
+            android:label="晚餐推荐"/>
+        <activity android:name=".activity.FruitActivity"
+            android:label="水果推荐"/>
     </application>
 
 </manifest>

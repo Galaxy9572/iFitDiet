@@ -18,8 +18,8 @@
         android:layout_marginStart="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="当前位置："
-        android:textSize="20sp"
+        android:text="当前位置：湖南省益阳市湖南城市学院"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/tv_nearFood"

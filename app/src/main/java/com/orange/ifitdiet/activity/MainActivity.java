@@ -31,7 +31,6 @@ import com.orange.ifitdiet.fragment.HealthFragment;
 import com.orange.ifitdiet.fragment.LocateFragment;
 import com.orange.ifitdiet.fragment.RecommendFragment;
 import com.orange.ifitdiet.util.LocateUtil;
-import com.zf.myzxing.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-            startActivity(new Intent().setClass(MainActivity.this, CaptureActivity.class));
+            startActivity(new Intent().setClass(MainActivity.this, MyMsgActivity.class));
         } else if (id == R.id.nav_personal_info) {
             startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
         } else if (id == R.id.nav_share) {
@@ -270,5 +269,18 @@ public class MainActivity extends AppCompatActivity
 
     public static BeanPool getBeanPool() {
         return beanPool;
+    }
+
+    public void iv_breakfast(View v){
+        startActivity(new Intent().setClass(MainActivity.this, BreakfastActivity.class));
+    }
+    public void iv_lunch(View v){
+        startActivity(new Intent().setClass(MainActivity.this, LunchActivity.class));
+    }
+    public void iv_supper(View v){
+        startActivity(new Intent().setClass(MainActivity.this, SupperActivity.class));
+    }
+    public void iv_fruit(View v){
+        startActivity(new Intent().setClass(MainActivity.this, FruitActivity.class));
     }
 }

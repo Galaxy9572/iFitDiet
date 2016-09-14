@@ -43,7 +43,7 @@ public class LocateFragment extends Fragment {
         city=locationBean.getCity();//城市信息
         district=locationBean.getDistrict();//城区信息
         street=locationBean.getStreet();//街道信息
-        tv_location.setText("当前位置："+province);
+//        tv_location.setText("当前位置："+province);
         Log.e("位置",province+city+street);
         return v;
     }

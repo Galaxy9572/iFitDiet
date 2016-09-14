@@ -23,6 +23,5 @@
         completions."
     </string>
     <string name="title_activity_social_hub">SocialHubActivity</string>
-    <string name="health_tips">怎么样才能活的更健康呢？\n
-           这里的健康不仅仅指身体健康，也包括心理健康。随着社会的发展，人们的精神压力逐渐增加。与此同时，大家也越来越重视精神追求。</string>
+    <string name="health_tips"> 三餐后喝水\n医生建议餐后半小时喝水\n起床一杯水\n清晨是一天补水的最佳时机，清晨饮水可以让肠胃苏醒过来，降低血液浓度，促进循环\n睡前一杯水\n睡前半小时补充水份，让身体在睡眠中维持平衡状态，降低结石发生的几率</string>
 </resources>

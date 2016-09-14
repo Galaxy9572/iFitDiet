@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,72 +19,187 @@
             android:layout_marginTop="10dp"
             android:text="今日推荐"
             android:textSize="20sp" />
-
-        <com.orange.ifitdiet.common.MyImageView
-            android:id="@+id/iv_today_rec"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_today_rec"
-            android:src="@drawable/pic1" />
-
         <LinearLayout
-            android:id="@+id/line_tv_bls"
+            android:id="@+id/line_bls"
+            android:layout_below="@id/tv_today_rec"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iv_today_rec">
-
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_breakfast"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/breakfast"
+                android:onClick="iv_breakfast"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/iv_lunch"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/lunch"
+                android:onClick="iv_lunch"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/iv_supper"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/supper"
+                android:onClick="iv_supper"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/iv_fruit"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/fruit"
+                android:onClick="iv_fruit"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tv_bls"
+            android:layout_below="@id/line_bls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_breakfast"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_today_breakfast"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:text="早餐"
-                android:textSize="20sp" />
-
+                android:textSize="20sp"
+                android:layout_weight="1"/>
             <TextView
-                android:id="@+id/tv_lunch"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_today_lunch"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:text="午餐"
-                android:textSize="20sp" />
-
+                android:textSize="20sp"
+                android:layout_weight="1"/>
             <TextView
-                android:id="@+id/tv_supper"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_today_suppert"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:text="晚餐"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_today_fruit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="水果"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/line_bls"
+        <TextView
+            android:id="@+id/tv_random"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line_tv_bls"
-            android:orientation="horizontal">
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_bls"
+            android:text="随便看看"
+            android:textSize="20sp"/>
+
+        <com.orange.ifitdiet.common.MyImageView
+            android:id="@+id/iv_random"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_random"
+            android:src="@drawable/pic5"/>
+
+        <TextView
+            android:id="@+id/tv_today_behaviour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/iv_random"
+            android:text="今日总览"
+            android:textSize="20sp"/>
+
+        <LinearLayout
+            android:id="@+id/line_today_behaviour"
+            android:layout_below="@id/tv_today_behaviour"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <com.orange.ifitdiet.common.MyImageView
+                android:id="@+id/iv_behaviour_run"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/run"/>
+
+            <TextView
+                android:id="@+id/tv_behaviour_run"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:text="正常运动量"
+                android:textSize="18sp"/>
 
             <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_breakfast"
-                android:layout_width="250dp"
-                android:layout_height="180dp"
-                android:src="@drawable/pic2" />
+                android:id="@+id/iv_behaviour_heartbeat"
+                android:layout_marginStart="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/heartbeat"/>
+            <TextView
+                android:id="@+id/tv_behaviour_heartbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:text="正常"
+                android:textSize="18sp"/>
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_behaviour_pressure"
+                android:layout_marginStart="10dp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/pressure"/>
+            <TextView
+                android:id="@+id/tv_behaviour_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:text="正常"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/tv_title_tips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line_bls"
+            android:layout_below="@id/line_today_behaviour"
             android:orientation="horizontal">
 
             <TextView
@@ -91,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="健康小贴士："
+                android:text="健康小贴士"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -99,6 +215,9 @@
             android:id="@+id/tv_health_tips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_below="@id/tv_title_tips"
             android:text="@string/health_tips" />
     </RelativeLayout>
