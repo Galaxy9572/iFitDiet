@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="为您推荐"
+            android:textSize="20sp"
             />
         <com.jude.rollviewpager.RollPagerView
             android:id="@+id/roll_view_pager"
@@ -26,13 +27,36 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:rollviewpager_play_delay="5000"/>
+
+        <TextView
+            android:id="@+id/tv_nutrition"
+            android:layout_below="@id/roll_view_pager"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="营养信息"
+            />
+
+        <TextView
+            android:id="@+id/tv_nutri_info"
+            android:layout_below="@id/tv_nutrition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="热量："/>
+
         <Button
             android:id="@+id/bt_share"
-            android:layout_below="@id/roll_view_pager"
+            android:layout_below="@id/tv_nutri_info"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:text="分享到微博"
             android:textColor="@color/white"
             android:background="@color/very_light_green"/>
