@@ -40,10 +40,10 @@ public class BreakfastActivity extends AppCompatActivity {
     }
     private class TestNormalAdapter extends StaticPagerAdapter {
         private int[] imgs = {
-                R.drawable.pic1,
-                R.drawable.pic2,
-                R.drawable.pic3,
-                R.drawable.pic4,
+                R.drawable.bf1,
+                R.drawable.bf2,
+                R.drawable.bf3,
+                R.drawable.bf4,
         };
 
 

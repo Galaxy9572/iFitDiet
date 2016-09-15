@@ -5,6 +5,7 @@
     android:background="@color/gray"
     tools:context="com.orange.ifitdiet.fragment.HealthFragment">
     <RelativeLayout
+        android:background="@color/white"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -20,6 +21,7 @@
             android:textSize="20sp"/>
         <ImageView
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/iv_run"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -72,6 +74,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -90,6 +93,7 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:id="@+id/iv_heartbeat"
             android:layout_below="@id/tv_heartbeat"
@@ -117,6 +121,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -135,6 +140,7 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:id="@+id/iv_bloodpressure"
             android:layout_below="@id/tv_bloodpressure"
