@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Zxing.CaptureActivity;
 import com.orange.ifitdiet.R;
 import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.common.FragAdapter;
@@ -223,7 +224,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {
-            startActivity(new Intent().setClass(MainActivity.this, MyMsgActivity.class));
+            startActivity(new Intent().setClass(MainActivity.this,CaptureActivity.class));
         } else if (id == R.id.nav_personal_info) {
             startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
         } else if (id == R.id.nav_share) {

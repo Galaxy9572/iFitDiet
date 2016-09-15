@@ -20,6 +20,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -91,6 +93,8 @@
             android:label="晚餐推荐"/>
         <activity android:name=".activity.FruitActivity"
             android:label="水果推荐"/>
+        <activity android:name="com.Zxing.CaptureActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

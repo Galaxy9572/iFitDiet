@@ -638,7 +638,7 @@ public class Base64 {
             // At this point either there is no tail, or there are fewer
             // than 3 bytes of input available.
 
-            // The main loop, turning 3 input bytes into 4 output bytes on
+            // The activity_capture loop, turning 3 input bytes into 4 output bytes on
             // each iteration.
             while (p + 3 <= len) {
                 v = ((input[p] & 0xff) << 16) |
