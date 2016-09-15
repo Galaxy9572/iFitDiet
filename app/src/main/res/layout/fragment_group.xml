@@ -9,6 +9,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <TextView
         android:id="@+id/tv_my_group"
         android:layout_marginStart="10dp"
@@ -42,28 +43,31 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/group"/>
-
-        <ImageView
-            android:id="@+id/iv_share"
+        <LinearLayout
+            android:id="@+id/line_share"
             android:layout_below="@id/iv_group"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/share" />
-
-        <TextView
-            android:id="@+id/tv_share"
+            android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/iv_share"
-            android:layout_alignBottom="@id/iv_share"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="80dp"
-            android:text="分享该群组"
-            android:textSize="18sp"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/share" />
+
+            <TextView
+                android:id="@+id/tv_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="分享该群组"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_people"
@@ -106,8 +110,19 @@
             android:text="X退出"
             android:textSize="18sp"/>
 
-
     </RelativeLayout>
-
+   <Button
+       android:id="@+id/bt_create_group"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/group_created"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="10dp"
+       android:layout_marginStart="10dp"
+       android:text="创建新群组"
+       android:textSize="20sp"
+       android:background="@color/light_green"
+       android:textColor="@color/white"/>
 </RelativeLayout>
+
 </ScrollView>

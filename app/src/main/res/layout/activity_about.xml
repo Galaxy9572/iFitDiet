@@ -56,5 +56,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
-        android:text="高德地图定位SDK\nAsyncHttpClient"/>
+        android:text="高德地图定位SDK\nAsyncHttpClient\nZxing二维码识别"/>
+
+    <TextView
+        android:id="@+id/tv_contact_us"
+        android:layout_below="@id/tv_rights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:text="联系我们"/>
+    <ImageView
+        android:id="@+id/iv_contact_us"
+        android:layout_below="@id/tv_contact_us"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/qr_contact_us"/>
 </RelativeLayout>

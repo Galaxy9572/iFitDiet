@@ -284,4 +284,7 @@ public class MainActivity extends AppCompatActivity
     public void iv_fruit(View v){
         startActivity(new Intent().setClass(MainActivity.this, FruitActivity.class));
     }
+    public void iv_week(View v){
+        startActivity(new Intent().setClass(this, WeekActivity.class));
+    }
 }
