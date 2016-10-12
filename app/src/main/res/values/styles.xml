@@ -26,6 +26,13 @@
         <item name="colorPrimaryDark">@color/very_light_green</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="RecommendTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/middle_green</item>
+        <item name="colorPrimaryDark">@color/middle_green</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

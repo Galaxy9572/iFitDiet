@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Zxing.CaptureActivity;
 import com.orange.ifitdiet.R;
 import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.common.FragAdapter;
@@ -51,17 +50,19 @@ public class MainActivity extends AppCompatActivity
     private String district;//区
     private String street;//街道
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //判断手机是否支持蓝牙4.0
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "你的手机不支持低功耗蓝牙，功能受到限制", Toast.LENGTH_SHORT).show();
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);//添加Toolbar
         setSupportActionBar(toolbar);
         if (toolbar != null) {
-            toolbar.setTitle("iFitDiet");
+            toolbar.setTitle("iFitDiet");//在toolbar里设置标题
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,30 +73,26 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initComponents();//初始化一些按钮、TextView等组件
+        initLocation();//初始化高德定位
         initFragments();//初始化fragments
-        initLocation();
-        Intent intent = new Intent(this, StepService.class);
+        Intent intent = new Intent(this, StepService.class);//启动计步器服务
         startService(intent);
 
+
     }
 
+    /**
+     * 初始化高德定位API的功能
+     */
     private void initLocation() {
         locateUtil=new LocateUtil(this);
-        boolean isSuccess=locateUtil.locate(this);
-        if(isSuccess) {
-            province = locateUtil.getProvince();
-            city = locateUtil.getCity();//城市信息
-            district = locateUtil.getDistrict();//城区信息
-            street = locateUtil.getStreet();//街道信息
-
-            locationBean = new LocationBean(province, city, district, street);
-            beanPool.addBean("locationBean", locationBean);
-        }else{
-            locationBean = new LocationBean("", "", "", "");
-            beanPool.addBean("locationBean", locationBean);
-        }
+        locateUtil.locate(this);
+        //TODO
     }
 
+    /**
+     * 初始化MainActivity的组件
+     */
     private void initComponents() {
         View v_1 = getLayoutInflater().inflate(R.layout.activity_main_top_tab, null);
         tv_tab_recommend = (TextView) v_1.findViewById(R.id.tv_tab_recommend);//MainActivity顶部的推荐tab
@@ -128,6 +125,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /**
+     * 初始化推荐、健康、附近、群组四个Fragment
+     */
     private void initFragments() {
         vp = (ViewPager) findViewById(R.id.viewpager);//找到ViewPager
         List<Fragment> fragList = new ArrayList<>();
@@ -151,20 +151,16 @@ public class MainActivity extends AppCompatActivity
                 switch (position) {
                     case 0:
                         tv_tab_recommend.setTextColor(Color.WHITE);
-                        Toast.makeText(MainActivity.this,"0",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         tv_tab_health.setTextColor(Color.WHITE);
-                        Toast.makeText(MainActivity.this,"1",Toast.LENGTH_SHORT).show();
                         setTheme(R.style.HealthThem);
                         break;
                     case 2:
                         tv_tab_locate.setTextColor(Color.WHITE);
-                        Toast.makeText(MainActivity.this,"2",Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         tv_tab_group.setTextColor(Color.WHITE);
-                        Toast.makeText(MainActivity.this,"3",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -192,6 +188,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * 重新设置tab上的四个标签的字体颜色
+     */
     private void resetTextView() {
         tv_tab_recommend.setTextColor(Color.BLACK);
         tv_tab_locate.setTextColor(Color.BLACK);
@@ -209,12 +208,20 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    protected void register(View v) {
-        startActivity(new Intent().setClass(this, RegisterActivity.class));
+    /**
+     * 注册一个新的用户
+     * @param v
+     */
+    public void iv_register(View v) {
+        startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
     }
 
-    protected void login(View v) {
-        startActivity(new Intent().setClass(this, LoginActivity.class));
+    /**
+     * 用户登录
+     * @param v
+     */
+    public void iv_login(View v) {
+        startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -223,13 +230,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_mymsg) {
-            startActivity(new Intent().setClass(MainActivity.this,CaptureActivity.class));
-        } else if (id == R.id.nav_personal_info) {
+        if (id == R.id.nav_mymsg) {//我的消息按钮事件
+            startActivity(new Intent().setClass(MainActivity.this,MyMsgActivity.class));
+        } else if (id == R.id.nav_personal_info) {//个人信息按钮事件
             startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {//分享按钮事件
             startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
-        } else if (id == R.id.nav_social) {
+        } else if (id == R.id.nav_social) {//社交圈按钮事件
             startActivity(new Intent().setClass(MainActivity.this, SocialHubActivity.class));
         } else if (id == R.id.nav_about) {
             startActivity(new Intent().setClass(this, AboutActivity.class));
@@ -284,7 +291,7 @@ public class MainActivity extends AppCompatActivity
     public void iv_fruit(View v){
         startActivity(new Intent().setClass(MainActivity.this, FruitActivity.class));
     }
-    public void iv_week(View v){
-        startActivity(new Intent().setClass(this, WeekActivity.class));
+    public void iv_week(View view){
+        startActivity(new Intent().setClass(MainActivity.this , WeekActivity.class));
     }
 }

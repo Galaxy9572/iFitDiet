@@ -2,11 +2,13 @@ package com.orange.ifitdiet.domain;
 
 import android.media.Image;
 
+import java.io.Serializable;
+
 /**
  * Created by 廖俊瑶 on 2016/9/2.
  * 注册使用的JavaBean
  */
-public class UserBean {
+public class UserBean implements Serializable {
     private int UUID;//UUID，服务器产生
     private String userName;//用户名
     private int sex;//性别

@@ -24,7 +24,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/iv_location"
-            android:text="当前位置：湖南省益阳市湖南城市学院"
+            android:text="当前位置：湖南省益阳市"
             android:textSize="15sp" />
 
         <TextView

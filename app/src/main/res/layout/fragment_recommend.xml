@@ -118,12 +118,23 @@
 
         <TextView
             android:id="@+id/tv_random"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/tv_bls"
             android:text="随便看看"
+            android:textSize="20sp"/>
+        <Button
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/bt_change"
+            android:layout_below="@id/tv_bls"
+            android:layout_toEndOf="@+id/tv_random"
+            android:text="换一换"
+            android:textColor="@color/light_blue"
+            android:background="@color/transparent"
             android:textSize="20sp"/>
 
         <com.orange.ifitdiet.common.MyImageView
@@ -131,8 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/tv_random"
-            android:src="@drawable/pic5"/>
+            android:layout_below="@id/tv_random"/>
 
         <TextView
             android:id="@+id/tv_today_behaviour"

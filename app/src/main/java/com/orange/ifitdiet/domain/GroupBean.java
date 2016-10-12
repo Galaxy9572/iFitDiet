@@ -1,9 +1,11 @@
 package com.orange.ifitdiet.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by 廖俊瑶 on 2016/9/9.
  */
-public class GroupBean {
+public class GroupBean implements Serializable {
     private int personNum;
     private int times;
 

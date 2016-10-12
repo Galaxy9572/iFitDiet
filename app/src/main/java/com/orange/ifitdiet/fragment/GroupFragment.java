@@ -6,9 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
+import com.Zxing.CaptureActivity;
 import com.orange.ifitdiet.R;
 import com.orange.ifitdiet.activity.QRActivity;
+import com.orange.ifitdiet.activity.SmallGroupActivity;
 
 
 public class GroupFragment extends Fragment {
@@ -33,6 +37,20 @@ public class GroupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                startActivity(new Intent().setClass(getActivity(), QRActivity.class));
+            }
+        });
+        Button btn = (Button)v.findViewById(R.id.bt_sao);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent().setClass(getActivity(),CaptureActivity.class));
+            }
+        });
+        RelativeLayout layout = (RelativeLayout)v.findViewById(R.id.group_created);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent().setClass(getActivity() , SmallGroupActivity.class));
             }
         });
 

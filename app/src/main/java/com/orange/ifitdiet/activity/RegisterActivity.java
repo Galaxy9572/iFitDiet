@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    protected void register(View v) {
+    public void register(View v) {
         EditText et_userName = (EditText) findViewById(R.id.et_username);
         RadioButton rb_male = (RadioButton) findViewById(R.id.rb_male);
         RadioButton rb_female = (RadioButton) findViewById(R.id.rb_female);

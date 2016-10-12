@@ -111,11 +111,23 @@
             android:textSize="18sp"/>
 
     </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_sao"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/group_created"
+        android:text="扫一扫"
+        android:textSize="20sp"
+        android:background="@color/light_blue"
+        android:textColor="@color/white"/>
    <Button
        android:id="@+id/bt_create_group"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_below="@id/group_created"
+       android:layout_below="@id/bt_sao"
        android:layout_marginTop="10dp"
        android:layout_marginEnd="10dp"
        android:layout_marginStart="10dp"

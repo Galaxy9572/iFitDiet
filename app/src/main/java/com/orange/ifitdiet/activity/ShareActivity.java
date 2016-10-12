@@ -17,7 +17,7 @@ public class ShareActivity extends AppCompatActivity {
         Button bt_share= (Button) findViewById(R.id.bt_share);
 
     }
-    protected void share(View v){
+    public void share(View v){
         Toast.makeText(this,"分享成功",Toast.LENGTH_SHORT).show();
         this.finish();
     }

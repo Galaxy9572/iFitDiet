@@ -44,7 +44,7 @@
         android:layout_toRightOf="@id/iv_navi"
         android:textColor="@color/white"
         android:background="@android:color/transparent"
-        android:onClick="register"
+        android:onClick="iv_register"
         />
 
     <Button
@@ -57,6 +57,6 @@
         android:layout_toEndOf="@id/bt_register"
         android:textColor="@color/white"
         android:background="@android:color/transparent"
-        android:onClick="login"
+        android:onClick="iv_login"
         />
 </RelativeLayout>

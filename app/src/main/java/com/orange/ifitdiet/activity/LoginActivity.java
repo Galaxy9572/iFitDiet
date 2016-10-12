@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         cb_remember.setChecked(sp.getBoolean("isChecked",false));
     }
 
-    protected void login(View v){
+    public void login(View v){
         final String userName=et_username.getText().toString().trim();
         final String psw=et_psw.getText().toString().trim();
         LoginUserBean userBean=new LoginUserBean();

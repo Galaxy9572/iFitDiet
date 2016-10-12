@@ -1,9 +1,11 @@
 package com.orange.ifitdiet.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by 廖俊瑶 on 2016/9/8.
  */
-public class LocationBean {
+public class LocationBean implements Serializable{
 
     private String province;//省
     private String city;//市

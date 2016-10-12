@@ -1,23 +1,22 @@
 package com.orange.ifitdiet.common;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Created by 廖俊瑶 on 2016/9/10.
+ * Created by 廖俊瑶 on 2016/10/12.
  */
 public class BeanPool {
-    private Map<String, Object> beanPool=new HashMap<>();
+    private HashMap beanMap;
 
     public BeanPool() {
+        beanMap=new HashMap<String,Object>();
     }
 
-    public void addBean(String key, Object obj) {
-        beanPool.put(key, obj);
+    public HashMap getBeanMap() {
+        return beanMap;
     }
 
-    public Object getBean(String key) {
-        return beanPool.get(key);
+    public void setBeanMap(HashMap beanMap) {
+        this.beanMap = beanMap;
     }
-
 }

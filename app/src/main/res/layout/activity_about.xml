@@ -30,7 +30,7 @@
         android:layout_below="@id/tv_app_name"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
-        android:text="V1.0 Beta"/>
+        android:text="V1.0 Demo"/>
     <TextView
         android:id="@+id/tv_team"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_below="@id/tv_app_version"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
-        android:text="橙子团队"/>
+        android:text="橙子团队/Orange"/>
     <TextView
         android:id="@+id/tv_rights_title"
         android:layout_width="wrap_content"

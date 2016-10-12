@@ -27,7 +27,6 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile files('libs/AMap_Location_V2.8.0_20160811.jar')
-    compile 'com.jude:rollviewpager:1.2.9'
     compile files('libs/AMap_Search_V3.4.0_20160811.jar')
     compile files('libs/zxing.jar')
 }

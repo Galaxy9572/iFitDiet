@@ -12,6 +12,9 @@ import com.amap.api.services.weather.LocalWeatherLive;
 import com.amap.api.services.weather.LocalWeatherLiveResult;
 import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
+import com.orange.ifitdiet.activity.MainActivity;
+import com.orange.ifitdiet.common.BeanPool;
+import com.orange.ifitdiet.domain.LocationBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +30,7 @@ public class LocateUtil {
     private String city;//市
     private String district;//区
     private String street;//街道
+    private LocationBean locationBean;
     private boolean isSuccess;
 
     public LocateUtil(Context context) {
@@ -56,7 +60,10 @@ public class LocateUtil {
                         aMapLocation.getCityCode();//城市编码
                         aMapLocation.getAdCode();//地区编码
                         isSuccess = true;
-                        Log.e("城市", city + isSuccess);
+                        locationBean = new LocationBean(province, city, district, street);
+                        BeanPool beanPool= MainActivity.getBeanPool();
+                        beanPool.getBeanMap().put("locationBean",locationBean);
+                        Log.e("城市",province+city+district+street);
                         getWeatherForecast(LocateUtil.this.context, city);
 
                     } else {
@@ -76,13 +83,12 @@ public class LocateUtil {
         //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
         mLocationClientOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
         mLocationClientOption.setNeedAddress(true);//设置是否返回地址信息（默认返回地址信息）
-        mLocationClientOption.setOnceLocation(true);//设置是否只定位一次,默认为false
+        mLocationClientOption.setOnceLocation(false);//设置是否只定位一次,默认为false
         mLocationClientOption.setWifiActiveScan(true);//设置是否强制刷新WIFI，默认为强制刷新
         mLocationClientOption.setMockEnable(false);//设置是否允许模拟位置,默认为false，不允许模拟位置
-        mLocationClientOption.setInterval(2000);//设置定位间隔,单位毫秒,默认为2000ms
+        mLocationClientOption.setInterval(60000);//设置定位间隔,单位毫秒,默认为2000ms
         mLocationClient.setLocationOption(mLocationClientOption);//给定位客户端对象设置定位参数
         mLocationClient.startLocation(); //启动定位
-        Log.e("定位成功？", isSuccess + "");
         return isSuccess;
     }
 
