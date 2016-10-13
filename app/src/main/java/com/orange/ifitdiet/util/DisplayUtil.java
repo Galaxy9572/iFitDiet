@@ -1,7 +1,9 @@
 package com.orange.ifitdiet.util;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.Image;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -26,6 +28,7 @@ public class DisplayUtil {
         heightPixels = displayMetrics.heightPixels;
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public int scale(Image image){
         int imgHeight = image.getHeight();
         int imgWidth = image.getWidth();

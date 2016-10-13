@@ -30,6 +30,7 @@ import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
 import com.orange.ifitdiet.fragment.LocateFragment;
 import com.orange.ifitdiet.fragment.RecommendFragment;
+import com.orange.ifitdiet.util.DBUtil;
 import com.orange.ifitdiet.util.LocateUtil;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private static BeanPool beanPool=new BeanPool();
     private LocationBean locationBean;
     private LocateUtil locateUtil;
+    private DBUtil dbUtil;
     private String province;//省
     private String city;//市
     private String district;//区
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initComponents();//初始化一些按钮、TextView等组件
+        initDatabase();//初始化数据库
         initLocation();//初始化高德定位
         initFragments();//初始化fragments
         Intent intent = new Intent(this, StepService.class);//启动计步器服务
@@ -88,6 +91,10 @@ public class MainActivity extends AppCompatActivity
         locateUtil=new LocateUtil(this);
         locateUtil.locate(this);
         //TODO
+    }
+
+    private void initDatabase(){
+        dbUtil=new DBUtil(getApplicationContext());
     }
 
     /**
