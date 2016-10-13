@@ -1,364 +1,369 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_ref"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
     tools:context="com.orange.ifitdiet.fragment.HealthFragment">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_location"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/locationping" />
-
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/iv_location"
-            android:text="当前位置："
-            android:textSize="15sp" />
-
-        <ImageView
-            android:id="@+id/iv_weather"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/iv_location"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/sunny" />
-
-        <TextView
-            android:id="@+id/tv_weather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_location"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/iv_location"
-            android:text="当前天气："
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/tv_nearFood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_weather"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="附近的美食："
-            android:textSize="20sp" />
-
         <RelativeLayout
-            android:id="@+id/no1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nearFood"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-            android:onClick="no1">
-
-            <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_no1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/zzy" />
-
-            <TextView
-                android:id="@+id/tv_no1_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_no1"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_no1"
-                android:text="滋滋哟"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tv_no1_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_no1_name"
-                android:layout_below="@id/tv_no1_name"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/iv_no1"
-                android:text="营养信息："
-                android:textSize="18sp" />
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_no1_location"
+                android:id="@+id/iv_location"
                 android:layout_width="25dp"
                 android:layout_height="20dp"
-                android:layout_below="@id/tv_no1_info"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/iv_no1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/locationping" />
 
             <TextView
-                android:id="@+id/no1_location"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_no1_info"
-                android:layout_toEndOf="@id/iv_no1_location"
-                android:text="距您500米"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/no2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/no1"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-            android:onClick="no1">
-
-            <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_no2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/dbjzg" />
-
-            <TextView
-                android:id="@+id/tv_no2_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_no2"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_no2"
-                android:text="东北饺子馆"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tv_no2_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_no2_name"
-                android:layout_below="@id/tv_no2_name"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/iv_no2"
-                android:text="营养信息："
-                android:textSize="18sp" />
+                android:layout_toEndOf="@id/iv_location"
+                android:text="当前位置："
+                android:textSize="15sp" />
 
             <ImageView
-                android:id="@+id/iv_no2_location"
+                android:id="@+id/iv_weather"
                 android:layout_width="25dp"
                 android:layout_height="20dp"
-                android:layout_below="@id/tv_no2_info"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/iv_no2"
-                android:src="@drawable/locationping" />
-
-            <TextView
-                android:id="@+id/no2_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_no2_info"
-                android:layout_toEndOf="@id/iv_no2_location"
-                android:text="距您600米"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/no3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/no2"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-
-            android:onClick="no1">
-
-            <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_no3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/hdjtdf" />
-
-            <TextView
-                android:id="@+id/tv_no3_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_no3"
+                android:layout_below="@id/iv_location"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_no3"
-                android:text="户大姐土豆粉"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tv_no3_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_no3_name"
-                android:layout_below="@id/tv_no3_name"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/iv_no3"
-                android:text="营养信息："
-                android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/iv_no3_location"
-                android:layout_width="25dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/tv_no3_info"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/iv_no3"
-                android:src="@drawable/locationping" />
-
-            <TextView
-                android:id="@+id/no3_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_no3_info"
-                android:layout_toEndOf="@id/iv_no3_location"
-                android:text="距您650米"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/no4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/no3"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-
-            android:onClick="no1">
-
-            <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_no4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/jhd" />
+                android:src="@drawable/sunny" />
 
             <TextView
-                android:id="@+id/tv_no4_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_weather"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_no4"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_no4"
-                android:text="呷货店"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tv_no4_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_no4_name"
-                android:layout_below="@id/tv_no4_name"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/iv_no4"
-                android:text="营养信息："
-                android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/iv_no4_location"
-                android:layout_width="25dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/tv_no4_info"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/iv_no4"
-                android:src="@drawable/locationping" />
-
-            <TextView
-                android:id="@+id/no4_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_no4_info"
-                android:layout_toEndOf="@id/iv_no4_location"
-                android:text="距您700米"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/no5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/no4"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/white"
-
-            android:onClick="no1">
-
-            <com.orange.ifitdiet.common.MyImageView
-                android:id="@+id/iv_no5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
+                android:layout_below="@id/tv_location"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/ljkr" />
+                android:layout_toEndOf="@id/iv_location"
+                android:text="当前天气："
+                android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/tv_no5_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_nearFood"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_no5"
+                android:layout_below="@id/tv_weather"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_no5"
-                android:text="李纪烤肉"
-                android:textSize="25sp" />
+                android:layout_marginTop="10dp"
+                android:text="附近的美食："
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_no5_info"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/no1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_no5_name"
-                android:layout_below="@id/tv_no5_name"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/iv_no5"
-                android:text="营养信息："
-                android:textSize="18sp" />
+                android:layout_below="@id/tv_nearFood"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+                android:onClick="no1">
 
-            <ImageView
-                android:id="@+id/iv_no5_location"
-                android:layout_width="25dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/tv_no5_info"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/iv_no5"
-                android:src="@drawable/locationping" />
+                <com.orange.ifitdiet.common.MyImageView
+                    android:id="@+id/iv_no1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/zzy" />
 
-            <TextView
-                android:id="@+id/no5_location"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tv_no1_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_no1"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_no1"
+                    android:text="滋滋哟"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_no1_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_no1_name"
+                    android:layout_below="@id/tv_no1_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/iv_no1"
+                    android:text="营养信息："
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_no1_location"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/tv_no1_info"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@id/iv_no1"
+                    android:src="@drawable/locationping" />
+
+                <TextView
+                    android:id="@+id/no1_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_no1_info"
+                    android:layout_toEndOf="@id/iv_no1_location"
+                    android:text="距您500米"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/no2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_no5_info"
-                android:layout_toEndOf="@id/iv_no5_location"
-                android:text="距您800米"
-                android:textSize="18sp" />
+                android:layout_below="@id/no1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+                android:onClick="no1">
+
+                <com.orange.ifitdiet.common.MyImageView
+                    android:id="@+id/iv_no2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/dbjzg" />
+
+                <TextView
+                    android:id="@+id/tv_no2_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_no2"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_no2"
+                    android:text="东北饺子馆"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_no2_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_no2_name"
+                    android:layout_below="@id/tv_no2_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/iv_no2"
+                    android:text="营养信息："
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_no2_location"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/tv_no2_info"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@id/iv_no2"
+                    android:src="@drawable/locationping" />
+
+                <TextView
+                    android:id="@+id/no2_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_no2_info"
+                    android:layout_toEndOf="@id/iv_no2_location"
+                    android:text="距您600米"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/no3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/no2"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+
+                android:onClick="no1">
+
+                <com.orange.ifitdiet.common.MyImageView
+                    android:id="@+id/iv_no3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/hdjtdf" />
+
+                <TextView
+                    android:id="@+id/tv_no3_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_no3"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_no3"
+                    android:text="户大姐土豆粉"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_no3_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_no3_name"
+                    android:layout_below="@id/tv_no3_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/iv_no3"
+                    android:text="营养信息："
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_no3_location"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/tv_no3_info"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@id/iv_no3"
+                    android:src="@drawable/locationping" />
+
+                <TextView
+                    android:id="@+id/no3_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_no3_info"
+                    android:layout_toEndOf="@id/iv_no3_location"
+                    android:text="距您650米"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/no4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/no3"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+
+                android:onClick="no1">
+
+                <com.orange.ifitdiet.common.MyImageView
+                    android:id="@+id/iv_no4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/jhd" />
+
+                <TextView
+                    android:id="@+id/tv_no4_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_no4"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_no4"
+                    android:text="呷货店"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_no4_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_no4_name"
+                    android:layout_below="@id/tv_no4_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/iv_no4"
+                    android:text="营养信息："
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_no4_location"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/tv_no4_info"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@id/iv_no4"
+                    android:src="@drawable/locationping" />
+
+                <TextView
+                    android:id="@+id/no4_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_no4_info"
+                    android:layout_toEndOf="@id/iv_no4_location"
+                    android:text="距您700米"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/no5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/no4"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+
+                android:onClick="no1">
+
+                <com.orange.ifitdiet.common.MyImageView
+                    android:id="@+id/iv_no5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ljkr" />
+
+                <TextView
+                    android:id="@+id/tv_no5_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_no5"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/iv_no5"
+                    android:text="李纪烤肉"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_no5_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_no5_name"
+                    android:layout_below="@id/tv_no5_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/iv_no5"
+                    android:text="营养信息："
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_no5_location"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/tv_no5_info"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@id/iv_no5"
+                    android:src="@drawable/locationping" />
+
+                <TextView
+                    android:id="@+id/no5_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_no5_info"
+                    android:layout_toEndOf="@id/iv_no5_location"
+                    android:text="距您800米"
+                    android:textSize="18sp" />
+            </RelativeLayout>
         </RelativeLayout>
-
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
