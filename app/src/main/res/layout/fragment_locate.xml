@@ -24,14 +24,34 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/iv_location"
-            android:text="当前位置：湖南省益阳市"
+            android:text="当前位置："
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/iv_location"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/sunny" />
+
+        <TextView
+            android:id="@+id/tv_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_location"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/iv_location"
+            android:text="当前天气："
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_nearFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_location"
+            android:layout_below="@id/tv_weather"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="附近的美食："

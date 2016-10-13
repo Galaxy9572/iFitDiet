@@ -15,6 +15,7 @@ import com.amap.api.services.weather.WeatherSearchQuery;
 import com.orange.ifitdiet.activity.MainActivity;
 import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.domain.LocationBean;
+import com.orange.ifitdiet.domain.WeatherBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +31,9 @@ public class LocateUtil {
     private String city;//市
     private String district;//区
     private String street;//街道
+    private  BeanPool beanPool= MainActivity.getBeanPool();
     private LocationBean locationBean;
+    private WeatherBean weatherBean;
     private boolean isSuccess;
 
     public LocateUtil(Context context) {
@@ -61,7 +64,6 @@ public class LocateUtil {
                         aMapLocation.getAdCode();//地区编码
                         isSuccess = true;
                         locationBean = new LocationBean(province, city, district, street);
-                        BeanPool beanPool= MainActivity.getBeanPool();
                         beanPool.getBeanMap().put("locationBean",locationBean);
                         Log.e("城市",province+city+district+street);
                         getWeatherForecast(LocateUtil.this.context, city);
@@ -102,7 +104,11 @@ public class LocateUtil {
             public void onWeatherLiveSearched(LocalWeatherLiveResult localWeatherLiveResult, int i) {
                 if (i == 1000) {
                     LocalWeatherLive liveWeather = localWeatherLiveResult.getLiveResult();
-                    Log.e("天气", liveWeather.getTemperature() + liveWeather.getWeather());
+                    String weather=liveWeather.getWeather();
+                    String temperature=liveWeather.getTemperature();
+                    weatherBean=new WeatherBean(temperature,weather);
+                    beanPool.getBeanMap().put("weatherBean",weatherBean);
+                    Log.e("天气", temperature+ weather);
 
                 } else {
                     Log.e("", "查询天气失败");
