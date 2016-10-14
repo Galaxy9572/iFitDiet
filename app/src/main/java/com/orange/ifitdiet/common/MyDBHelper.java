@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
+ * 创建数据表的类
  * Created by 廖俊瑶 on 2016/10/13.
  */
 public class MyDBHelper extends SQLiteOpenHelper {
@@ -13,6 +14,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
+    /**
+     * 当类被初始化时创建数据表
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table Step(Date char(10) primary key,Step integer,Calories integer)");

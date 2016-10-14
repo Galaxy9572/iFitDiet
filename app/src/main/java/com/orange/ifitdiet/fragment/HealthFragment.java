@@ -15,14 +15,12 @@ import com.orange.ifitdiet.common.StepDetector;
 import com.orange.ifitdiet.common.StepService;
 
 public class HealthFragment extends Fragment {
-    private View view;
     private int total_step = 0;
     private Thread thread;
     private int Type = 1;
     private int calories = 0;
     private int step_length = 50;
     private int weight = 70;
-    private String test;
     private boolean flag = true;// 来判断第三个页面是否开启动画
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {

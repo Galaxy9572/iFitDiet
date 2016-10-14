@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
+ * 自定义的ImageView，可以根据图片大小自适应
  * Created by 廖俊瑶 on 2016/9/9.
  */
 public class MyImageView extends ImageView {
