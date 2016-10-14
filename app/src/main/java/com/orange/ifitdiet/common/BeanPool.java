@@ -9,14 +9,16 @@ public class BeanPool {
     private HashMap beanMap;
 
     public BeanPool() {
-        beanMap=new HashMap<String,Object>();
+        beanMap = new HashMap<String, Object>();
     }
 
+    /**
+     * 获取BeanPool
+     *
+     * @return 返回BeanPool的实例
+     */
     public HashMap getBeanMap() {
         return beanMap;
     }
 
-    public void setBeanMap(HashMap beanMap) {
-        this.beanMap = beanMap;
-    }
 }

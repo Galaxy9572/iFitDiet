@@ -14,9 +14,19 @@ import java.util.LinkedHashMap;
  */
 public class DBUtil {
     private SQLiteDatabase db;
+    private Context context;
 
     public DBUtil(Context context) {
-        MyDBHelper myDBHelper = new MyDBHelper(context, "health_date.db", null, 1);
+        this.context = context;
+    }
+
+    /**
+     * 创建一个新的数据库
+     *
+     * @param DBName 数据库的名字 格式为 xxx.db
+     */
+    public void createNewDB(String DBName) {
+        MyDBHelper myDBHelper = new MyDBHelper(context, DBName, null, 1);
         db = myDBHelper.getWritableDatabase();
     }
 
@@ -71,6 +81,11 @@ public class DBUtil {
         db.execSQL("insert into Heartbeat (Time,heartbeat)values(?, ?)", new Object[]{time, heartbeat});
     }
 
+    /**
+     * 删除指定的某天内的所有心率数据
+     *
+     * @param date 指定的日期
+     */
     public void deleteFromHeartbeat(String date) {
         db.execSQL("delete from Heartbeat where Date=?", new Object[]{date});
     }
@@ -109,6 +124,11 @@ public class DBUtil {
         db.execSQL("insert into Bloodpressure (Time,Bloodpressure) values(?, ?)", new Object[]{time, bloodpressure});
     }
 
+    /**
+     * 删除指定的某天内的所有血压数据
+     *
+     * @param date 指定的日期
+     */
     public void deleteFromBloodpressure(String date) {
         db.execSQL("delete from Bloodpressure where Date=?", new Object[]{date});
     }

@@ -26,6 +26,11 @@ public class NetUtil {
     private boolean isRegistered;//是否注册成功
     private boolean isLogin;//是否登陆成功
 
+    /**
+     * 注册一个新的用户
+     * @param userBean
+     * @return 陈功返回true，否则返回false
+     */
     public boolean register(UserBean userBean) {//注册方法
         String reg_url = "http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=register";//服务器地址，测试地址
         AsyncHttpClient client = new AsyncHttpClient();
@@ -53,7 +58,12 @@ public class NetUtil {
         return isRegistered;
     }
 
-    public boolean login(LoginUserBean userBean) {//登陆方法
+    /**
+     * 用户登录方法
+     * @param userBean
+     * @return 陈功返回true，否则返回false
+     */
+    public boolean login(LoginUserBean userBean) {
         String reg_url = "http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=login";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -73,7 +83,6 @@ public class NetUtil {
             }
 
         });
-        System.out.println("RETURN++++++++++++++++++++++++++++++++++++++++++" + isLogin);
         return isLogin;
     }
 

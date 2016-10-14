@@ -25,13 +25,16 @@ import com.orange.ifitdiet.R;
 import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.common.FragAdapter;
 import com.orange.ifitdiet.common.StepService;
-import com.orange.ifitdiet.domain.LocationBean;
+import com.orange.ifitdiet.common.UtilPool;
 import com.orange.ifitdiet.fragment.GroupFragment;
 import com.orange.ifitdiet.fragment.HealthFragment;
 import com.orange.ifitdiet.fragment.LocateFragment;
 import com.orange.ifitdiet.fragment.RecommendFragment;
 import com.orange.ifitdiet.util.DBUtil;
+import com.orange.ifitdiet.util.DisplayUtil;
 import com.orange.ifitdiet.util.LocateUtil;
+import com.orange.ifitdiet.util.NetUtil;
+import com.orange.ifitdiet.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,17 +44,14 @@ public class MainActivity extends AppCompatActivity
     private boolean isRegister, isLogin;
     //Tab显示内容TextView
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
-    //屏幕的宽度
     private ViewPager vp;
-    private static BeanPool beanPool=new BeanPool();
-    private LocationBean locationBean;
-    private LocateUtil locateUtil;
-    private DBUtil dbUtil;
-    private String province;//省
-    private String city;//市
-    private String district;//区
-    private String street;//街道
-
+    private static BeanPool beanPool = new BeanPool();//存放JavaBean的池
+    private static UtilPool utilPool = new UtilPool();//存放工具类的池
+    private LocateUtil locateUtil;//定位工具类
+    private DBUtil dbUtil;//数据库工具类
+    private DisplayUtil displayUtil;//显示设置工具类
+    private NetUtil netUtil;//网络通信工具类
+    private TimeUtil timeUtil;//时间工具类
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initComponents();//初始化一些按钮、TextView等组件
+        initUtils();//初始化工具类实例
         initDatabase();//初始化数据库
         initLocation();//初始化高德定位
         initFragments();//初始化fragments
@@ -85,16 +86,33 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
+     * 初始化工具类并添加到UtilPool中
+     */
+    private void initUtils() {
+        locateUtil = new LocateUtil(this);
+        dbUtil = new DBUtil(getApplicationContext());
+        displayUtil = new DisplayUtil(getApplicationContext());
+        netUtil = new NetUtil();
+        timeUtil = new TimeUtil();
+        utilPool.getUtilMap().put("locateUtil", locateUtil);
+        utilPool.getUtilMap().put("dbUtil", dbUtil);
+        utilPool.getUtilMap().put("displayUtil", displayUtil);
+        utilPool.getUtilMap().put("netUtil", netUtil);
+        utilPool.getUtilMap().put("timeUtil", timeUtil);
+    }
+
+    /**
      * 初始化高德定位API的功能
      */
     private void initLocation() {
-        locateUtil=new LocateUtil(this);
         locateUtil.locate(this);
-        //TODO
     }
 
-    private void initDatabase(){
-        dbUtil=new DBUtil(getApplicationContext());
+    /**
+     * 初始化数据库
+     */
+    private void initDatabase() {
+        dbUtil.createNewDB("health_data.db");
     }
 
     /**
@@ -126,7 +144,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
             }
         });
-
 
 
     }
@@ -217,6 +234,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * 注册一个新的用户
+     *
      * @param v
      */
     public void iv_register(View v) {
@@ -225,6 +243,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * 用户登录
+     *
      * @param v
      */
     public void iv_login(View v) {
@@ -238,7 +257,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mymsg) {//我的消息按钮事件
-            startActivity(new Intent().setClass(MainActivity.this,MyMsgActivity.class));
+            startActivity(new Intent().setClass(MainActivity.this, MyMsgActivity.class));
         } else if (id == R.id.nav_personal_info) {//个人信息按钮事件
             startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
         } else if (id == R.id.nav_share) {//分享按钮事件
@@ -277,7 +296,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         public void onClick(View v) {
-            vp.setCurrentItem(index,true);//选择某一页
+            vp.setCurrentItem(index, true);//选择某一页
         }
 
     }
@@ -286,19 +305,27 @@ public class MainActivity extends AppCompatActivity
         return beanPool;
     }
 
-    public void iv_breakfast(View v){
+    public static UtilPool getUtilPool() {
+        return utilPool;
+    }
+
+    public void iv_breakfast(View v) {
         startActivity(new Intent().setClass(MainActivity.this, BreakfastActivity.class));
     }
-    public void iv_lunch(View v){
+
+    public void iv_lunch(View v) {
         startActivity(new Intent().setClass(MainActivity.this, LunchActivity.class));
     }
-    public void iv_supper(View v){
+
+    public void iv_supper(View v) {
         startActivity(new Intent().setClass(MainActivity.this, SupperActivity.class));
     }
-    public void iv_fruit(View v){
+
+    public void iv_fruit(View v) {
         startActivity(new Intent().setClass(MainActivity.this, FruitActivity.class));
     }
-    public void iv_week(View view){
-        startActivity(new Intent().setClass(MainActivity.this , WeekActivity.class));
+
+    public void iv_week(View view) {
+        startActivity(new Intent().setClass(MainActivity.this, WeekActivity.class));
     }
 }

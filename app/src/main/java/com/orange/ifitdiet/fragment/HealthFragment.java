@@ -29,9 +29,10 @@ public class HealthFragment extends Fragment {
             super.handleMessage(msg);
             total_step = StepDetector.CURRENT_STEP;
             if (Type == 1) {
-                tv_steped.setText(total_step+"");
-                calories = (int) (weight * total_step * step_length * 0.01 * 0.01);
-                tv_calories.setText(calories+"");
+                tv_steped.setText(total_step+"");//将步数显示到软件UI
+                calories = (int) (weight * total_step * step_length * 0.01 * 0.01);//卡路里消耗公式
+                tv_calories.setText(calories+"");//将消耗卡路里显示到软件UI
+
             } else if (Type == 3) {
                 if (flag) {
                     flag = false;

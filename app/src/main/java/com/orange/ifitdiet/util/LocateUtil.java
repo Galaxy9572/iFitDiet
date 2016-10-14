@@ -32,24 +32,27 @@ public class LocateUtil {
     private String city;//市
     private String district;//区
     private String street;//街道
-    private  BeanPool beanPool= MainActivity.getBeanPool();
-    private LocationBean locationBean;
-    private WeatherBean weatherBean;
-    private boolean isSuccess;
-    private String weather;
-    private String temperature;
+    private BeanPool beanPool = MainActivity.getBeanPool();
+    private LocationBean locationBean;//存放定位数据的JavaBean
+    private WeatherBean weatherBean;//存放天气数据的JavaBean
+    private String weather;//当前天气
+    private String temperature;//当前温度
 
     public LocateUtil(Context context) {
         this.context = context;
     }
 
-    public boolean locate(final Context context) {
+    /**
+     * 搞得地图的定位方法
+     *
+     * @param context
+     */
+    public void locate(final Context context) {
         mLocationClient = new AMapLocationClient(context);//初始化定位
         AMapLocationListener mLocationListener = new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
-                if (aMapLocation != null) if (aMapLocation.getErrorCode() == 0) {
-                    //定位成功回调信息，设置相关消息
+                if (aMapLocation != null) if (aMapLocation.getErrorCode() == 0) {//定位成功回调信息，设置相关消息
                     aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
                     aMapLocation.getLatitude();//获取经度
                     aMapLocation.getLongitude();//获取纬度
@@ -64,20 +67,17 @@ public class LocateUtil {
                     street = aMapLocation.getStreet();//街道信息
                     aMapLocation.getCityCode();//城市编码
                     aMapLocation.getAdCode();//地区编码
-                    isSuccess = true;
                     locationBean = new LocationBean(province, city, district, street);
                     beanPool.getBeanMap().put("locationBean", locationBean);
                     Log.e("城市", province + city + district + street);
                     getWeatherForecast(LocateUtil.this.context, city);
 
-                } else {
-                    //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                } else {//定位失败显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                     Log.e("AmapError",
                             "location Error, ErrCode:"
                                     + aMapLocation.getErrorCode() + ", errInfo:"
                                     + aMapLocation.getErrorInfo());
-                    Toast.makeText(context, aMapLocation.getErrorInfo(),Toast.LENGTH_SHORT).show();
-                    isSuccess = false;
+                    Toast.makeText(context, aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
                     locationBean = new LocationBean("", "", "", "");
                     beanPool.getBeanMap().put("locationBean", locationBean);
                     weatherBean = new WeatherBean("", "");
@@ -97,10 +97,13 @@ public class LocateUtil {
         mLocationClientOption.setInterval(60000);//设置定位间隔,单位毫秒,默认为2000ms
         mLocationClient.setLocationOption(mLocationClientOption);//给定位客户端对象设置定位参数
         mLocationClient.startLocation(); //启动定位
-        return isSuccess;
     }
 
-
+    /**
+     * 获取当地天气的方法
+     * @param context
+     * @param city 当前的城市
+     */
     public void getWeatherForecast(Context context, String city) {
         WeatherSearchQuery weatherQuery = new WeatherSearchQuery(city, WeatherSearchQuery.WEATHER_TYPE_LIVE);
         WeatherSearch weatherSearch = new WeatherSearch(context);
@@ -112,8 +115,8 @@ public class LocateUtil {
                     LocalWeatherLive liveWeather = localWeatherLiveResult.getLiveResult();
                     weather = liveWeather.getWeather();
                     temperature = liveWeather.getTemperature();
-                    weatherBean=new WeatherBean(temperature, weather);
-                    beanPool.getBeanMap().put("weatherBean",weatherBean);
+                    weatherBean = new WeatherBean(temperature, weather);
+                    beanPool.getBeanMap().put("weatherBean", weatherBean);
                     Log.e("天气", temperature + weather);
 
                 } else {
