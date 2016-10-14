@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 时间转化工具
+ * 时间获取和格式转化工具
  * Created by 廖俊瑶 on 2016/10/13.
  */
 public class TimeUtil {

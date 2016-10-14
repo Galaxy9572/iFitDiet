@@ -22,8 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by 廖俊瑶 on 2016/9/3.
  * 定位工具类，使用高德定位SDK
+ * Created by 廖俊瑶 on 2016/9/3.
  */
 public class LocateUtil {
     private Context context;

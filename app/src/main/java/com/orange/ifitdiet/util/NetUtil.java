@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Created by 廖俊瑶 on 2016/9/2.
  * 网络连接的工具类，使用开源项目AsyncHttpClient
+ * Created by 廖俊瑶 on 2016/9/2.
  */
 public class NetUtil {
     private boolean isRegistered;//是否注册成功

@@ -9,7 +9,7 @@ import com.orange.ifitdiet.common.MyDBHelper;
 import java.util.LinkedHashMap;
 
 /**
- * 数据库工具
+ * 数据库工具类
  * Created by 廖俊瑶 on 2016/10/13.
  */
 public class DBUtil {
