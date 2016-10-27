@@ -22,6 +22,5 @@
         android:textSize="20sp"
         android:text="分享到微博"
         android:textColor="@color/white"
-        android:background="@color/light_green"
-        android:onClick="share"/>
+        android:background="@color/light_green"/>
 </RelativeLayout>

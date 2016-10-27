@@ -34,6 +34,7 @@ import com.orange.ifitdiet.util.DBUtil;
 import com.orange.ifitdiet.util.DisplayUtil;
 import com.orange.ifitdiet.util.LocateUtil;
 import com.orange.ifitdiet.util.NetUtil;
+import com.orange.ifitdiet.util.ShareUtil;
 import com.orange.ifitdiet.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     private DisplayUtil displayUtil;//显示设置工具类
     private NetUtil netUtil;//网络通信工具类
     private TimeUtil timeUtil;//时间工具类
+    private ShareUtil shareUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +94,15 @@ public class MainActivity extends AppCompatActivity
         locateUtil = new LocateUtil(this);
         dbUtil = new DBUtil(getApplicationContext());
         displayUtil = new DisplayUtil(getApplicationContext());
-        netUtil = new NetUtil();
+        netUtil = new NetUtil(getApplicationContext());
         timeUtil = new TimeUtil();
+        shareUtil = new ShareUtil(getApplicationContext());
         utilPool.getUtilMap().put("locateUtil", locateUtil);
         utilPool.getUtilMap().put("dbUtil", dbUtil);
         utilPool.getUtilMap().put("displayUtil", displayUtil);
         utilPool.getUtilMap().put("netUtil", netUtil);
         utilPool.getUtilMap().put("timeUtil", timeUtil);
+        utilPool.getUtilMap().put("shareUtil", shareUtil);
     }
 
     /**
@@ -267,7 +271,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             startActivity(new Intent().setClass(this, AboutActivity.class));
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent().setClass(this, SettingActivity.class));
+            startActivity(new Intent().setClass(this, DeviceScanActivity.class));
         } else if (id == R.id.nav_exit) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setTitle("退出程序").setMessage("是否退出程序")

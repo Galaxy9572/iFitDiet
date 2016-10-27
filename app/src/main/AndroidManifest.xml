@@ -75,9 +75,6 @@
             android:name=".activity.MyMsgActivity"
             android:label="我的消息" />
 
-        <service android:name="com.amap.api.location.APSService" />
-        <service android:name=".common.StepService" />
-
         <activity
             android:name=".activity.SendSocialMsgActivity"
             android:label="发送消息" />
@@ -88,19 +85,19 @@
         <activity
             android:name=".activity.BreakfastActivity"
             android:label="早餐推荐"
-            android:theme="@style/GroupTheme"/>
+            android:theme="@style/GroupTheme" />
         <activity
             android:name=".activity.LunchActivity"
             android:label="午餐推荐"
-            android:theme="@style/LocationTheme"/>
+            android:theme="@style/LocationTheme" />
         <activity
             android:name=".activity.SupperActivity"
             android:label="晚餐推荐"
-            android:theme="@style/HealthThem"/>
+            android:theme="@style/HealthThem" />
         <activity
             android:name=".activity.FruitActivity"
             android:label="水果推荐"
-            android:theme="@style/RecommendTheme"/>
+            android:theme="@style/RecommendTheme" />
         <activity
             android:name="com.Zxing.CaptureActivity"
             android:screenOrientation="portrait" />
@@ -110,10 +107,18 @@
         <activity
             android:name=".activity.WeekActivity"
             android:label="健康周报" />
-        <activity android:name=".activity.BusinessActivity"
-            android:label="店家详情"/>
-        <activity android:name=".activity.SmallGroupActivity"
-            android:label="群组详情"/>
+        <activity
+            android:name=".activity.BusinessActivity"
+            android:label="店家详情" />
+        <activity
+            android:name=".activity.SmallGroupActivity"
+            android:label="群组详情" />
+        <activity
+            android:name=".activity.DeviceScanActivity"
+            android:label="附近设备" />
+
+        <service android:name="com.amap.api.location.APSService" />
+        <service android:name=".common.StepService" />
     </application>
 
 </manifest>

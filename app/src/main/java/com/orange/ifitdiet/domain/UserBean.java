@@ -9,65 +9,65 @@ import java.io.Serializable;
  * 注册使用的JavaBean
  */
 public class UserBean implements Serializable {
-    private int UUID;//UUID，服务器产生
-    private String userName;//用户名
+    private String id;//id，服务器产生
+    private String name;//用户名
     private int sex;//性别
-    private String psw;//密码
-    private String phone;//手机号
-    private Image avatar;//头像
-    private String email;//电子邮件
+    private String password;//密码
+    private Image portrait;//头像
+    private String loginName;//(登录名)电子邮件
     private String birthday;//生日
     private String hometown;//籍贯
+    private String taste;//口味
 
     public UserBean() {
     }
 
-    public int getUUID() {
-        return UUID;
+    public String getId() {
+        return id;
     }
 
-    public void setUUID(int UUID) {
-        this.UUID = UUID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPsw() {
-        return psw;
+    public int getSex() {
+        return sex;
     }
 
-    public void setPsw(String psw) {
-        this.psw = psw;
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Image getAvatar() {
-        return avatar;
+    public Image getPortrait() {
+        return portrait;
     }
 
-    public void setAvatar(Image avatar) {
-        this.avatar = avatar;
+    public void setPortrait(Image portrait) {
+        this.portrait = portrait;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getBirthday() {
@@ -86,11 +86,11 @@ public class UserBean implements Serializable {
         this.hometown = hometown;
     }
 
-    public int getSex() {
-        return sex;
+    public String getTaste() {
+        return taste;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setTaste(String taste) {
+        this.taste = taste;
     }
 }

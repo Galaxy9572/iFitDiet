@@ -38,7 +38,7 @@
                 android:id="@+id/et_username"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="用户名：（必填）" />
+                android:hint="昵称：" />
         </LinearLayout>
 
         <LinearLayout
@@ -128,11 +128,11 @@
             android:gravity="center_horizontal">
 
             <EditText
-                android:id="@+id/et_phone"
+                android:id="@+id/et_taste"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:hint="手机：（必填）"
+                android:hint="口味：（必填）"
                 android:inputType="number" />
         </LinearLayout>
 
@@ -145,11 +145,10 @@
             android:gravity="center_horizontal">
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_loginName"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:ems="11"
-                android:hint="邮箱："
+                android:hint="登录名（必填）："
                 android:inputType="textEmailAddress" />
         </LinearLayout>
 

@@ -25,7 +25,7 @@ import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private NetUtil netUtil=(NetUtil)MainActivity.getUtilPool().getUtilMap().get("netUtil");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton rb_female = (RadioButton) findViewById(R.id.rb_female);
         EditText et_psw = (EditText) findViewById(R.id.et_psw);
         EditText et_cfpsw = (EditText) findViewById(R.id.et_cfpsw);
-        EditText et_phone = (EditText) findViewById(R.id.et_phone);
-        EditText et_email = (EditText) findViewById(R.id.et_email);//可不填
+        EditText et_taste = (EditText) findViewById(R.id.et_taste);
+        EditText et_loginName = (EditText) findViewById(R.id.et_loginName);//可不填
         EditText et_province = (EditText) findViewById(R.id.et_province);//可不填
         EditText et_city = (EditText) findViewById(R.id.et_city);//可不填
         EditText et_birthday = (EditText) findViewById(R.id.et_birthday);
@@ -92,13 +92,13 @@ public class RegisterActivity extends AppCompatActivity {
         String userName=et_userName.getText().toString().trim();
         String psw=et_psw.getText().toString().trim();
         String cfpsw=et_cfpsw.getText().toString().trim();
-        String phone=et_phone.getText().toString().trim();
-        String email=et_email.getText().toString().trim();
+        String taste=et_taste.getText().toString().trim();
+        String loginName=et_loginName.getText().toString().trim();
         String hometown=et_province.getText()+et_city.getText().toString().trim();
         String birthday=et_birthday.getText().toString();
         UserBean userBean = new UserBean();
         if(!userBean.equals("")) {
-            userBean.setUserName(userName);
+            userBean.setName(userName);
         }else{
             Toast.makeText(RegisterActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -109,13 +109,13 @@ public class RegisterActivity extends AppCompatActivity {
             userBean.setSex(1);
         }
         if(psw.equals(cfpsw)){
-            userBean.setPsw(et_psw.getText().toString().trim());
+            userBean.setPassword(et_psw.getText().toString().trim());
         }else{
             Toast.makeText(RegisterActivity.this, "两次输入的密码不一致，请再次确认", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(!phone.equals("")) {
-            userBean.setPhone(phone);
+        if(!taste.equals("")) {
+            userBean.setTaste(taste);
         }else{
             Toast.makeText(RegisterActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -126,13 +126,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "生日不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        userBean.setEmail(email);
+        userBean.setLoginName(loginName);
         userBean.setHometown(hometown);
-        boolean success= new NetUtil().register(userBean);
-        if(success){
-            Toast.makeText(RegisterActivity.this, "注册成功！", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(RegisterActivity.this, "注册失败！", Toast.LENGTH_SHORT).show();
-        }
+        netUtil.register(userBean);
     }
 }

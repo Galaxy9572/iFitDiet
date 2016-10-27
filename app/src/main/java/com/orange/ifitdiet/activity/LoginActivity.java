@@ -14,7 +14,7 @@ import com.orange.ifitdiet.domain.LoginUserBean;
 import com.orange.ifitdiet.util.NetUtil;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private NetUtil netUtil=(NetUtil)MainActivity.getUtilPool().getUtilMap().get("netUtil");
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private CheckBox cb_remember;
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginUserBean userBean=new LoginUserBean();
         userBean.setUserName(userName);
         userBean.setPsw(psw);
-        boolean success=new NetUtil().login(userBean);
+        boolean success=netUtil.login(userBean);
         if(success) {
             Toast.makeText(this, "登录成功！", Toast.LENGTH_SHORT).show();
             cb_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

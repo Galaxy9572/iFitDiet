@@ -1,17 +1,21 @@
 package com.orange.ifitdiet.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orange.ifitdiet.domain.LoginUserBean;
 import com.orange.ifitdiet.domain.UserBean;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,48 +27,72 @@ import java.io.OutputStream;
  * Created by 廖俊瑶 on 2016/9/2.
  */
 public class NetUtil {
-    private boolean isRegistered;//是否注册成功
     private boolean isLogin;//是否登陆成功
+    private String serverUrl = "http://172.21.127.1:8080/iFitDiet/";
+    private Context context;
+
+    public NetUtil(Context context) {
+        this.context = context;
+    }
 
     /**
      * 注册一个新的用户
+     *
      * @param userBean
      * @return 陈功返回true，否则返回false
      */
-    public boolean register(UserBean userBean) {//注册方法
-        String reg_url = "http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=register";//服务器地址，测试地址
+    public void register(UserBean userBean) {//注册方法
+        String reg_url = serverUrl + "UserServlet?type=reg";//服务器地址，测试地址
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         //将注册信息添加到参数中
-        params.put("username", userBean.getUserName());
+        params.put("name", userBean.getName());
         params.put("sex", userBean.getSex());
-        params.put("password", userBean.getPsw());
-        params.put("phone", userBean.getPhone());
-        params.put("portrait", userBean.getAvatar());
-        params.put("email", userBean.getEmail());
+        params.put("password", userBean.getPassword());
+        params.put("loginName", userBean.getLoginName());
+        params.put("portrait", userBean.getPortrait());
         params.put("hometown", userBean.getHometown());
         params.put("birthday", userBean.getBirthday());
+        params.put("taste", userBean.getTaste());
         client.post(reg_url, params, new AsyncHttpResponseHandler() {//用Http POST方式提交到服务器
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                isRegistered = true;
+                if (statusCode == 200 || statusCode == 304) {
+                    Toast.makeText(context, "注册成功", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(context, "注册失败", Toast.LENGTH_SHORT).show();
+//                Log.e("返回的数据",new String(headers));
+
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                isRegistered = false;
             }
         });
-        return isRegistered;
     }
+    private void getData(){
+        String reg_url = serverUrl + "UserServlet?type=reg";//服务器地址，测试地址
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(serverUrl,new JsonHttpResponseHandler(){
+            public void onSuccess(int statusCode, Header[] headers,
+                                  JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                if (statusCode == 200||statusCode==304) {
+                    //TODO
+                }
+            }
+        });
+    }
+
 
     /**
      * 用户登录方法
+     *
      * @param userBean
      * @return 陈功返回true，否则返回false
      */
     public boolean login(LoginUserBean userBean) {
-        String reg_url = "http://172.17.215.1:8080/iFitDiet2/AccountServlet?cmd=login";
+        String reg_url = serverUrl + "UserServlet?type=login";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("username", userBean.getUserName());
@@ -72,9 +100,10 @@ public class NetUtil {
         client.post(reg_url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    isLogin = true;
+                if (statusCode == 200 || statusCode == 304) {
+                    Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
                 }
+                Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override

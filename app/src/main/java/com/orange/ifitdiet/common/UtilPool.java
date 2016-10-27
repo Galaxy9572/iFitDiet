@@ -10,6 +10,7 @@ public class UtilPool {
     private HashMap<String, Object> utilMap;
 
     public UtilPool() {
+        utilMap=new HashMap<String,Object>();
     }
 
     /**

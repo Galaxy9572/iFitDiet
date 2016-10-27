@@ -24,4 +24,23 @@
     </string>
     <string name="title_activity_social_hub">SocialHubActivity</string>
     <string name="health_tips"> 三餐后喝水\n医生建议餐后半小时喝水\n起床一杯水\n清晨是一天补水的最佳时机，清晨饮水可以让肠胃苏醒过来，降低血液浓度，促进循环\n睡前一杯水\n睡前半小时补充水份，让身体在睡眠中维持平衡状态，降低结石发生的几率</string>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
 </resources>
