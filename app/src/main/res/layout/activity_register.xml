@@ -131,9 +131,7 @@
                 android:id="@+id/et_taste"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:ems="11"
-                android:hint="口味：（必填）"
-                android:inputType="number" />
+                android:hint="口味：（必填）" />
         </LinearLayout>
 
         <LinearLayout
@@ -197,13 +195,34 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line_hw"
+            android:layout_below="@id/line_birthday"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+            <EditText
+                android:id="@+id/et_height"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="身高：（cm，必填）" />
 
+            <EditText
+                android:id="@+id/et_weight"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="number"
+                android:hint="体重：（kg，必填）" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line_birthday"
+            android:layout_below="@+id/line_hw"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@color/white"

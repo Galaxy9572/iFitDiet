@@ -56,7 +56,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
-        android:text="高德地图定位SDK\nAsyncHttpClient\nZxing二维码识别"/>
+        android:text="高德地图定位SDK\n新浪微博SDK\nAsyncHttpClient\nZxing二维码识别"/>
 
     <TextView
         android:id="@+id/tv_contact_us"

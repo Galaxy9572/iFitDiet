@@ -65,22 +65,14 @@
             android:value="b7f9778df1c327bdcc3a937cdefbcf10" />
 
         <activity
-            android:name=".activity.SocialHubActivity"
-            android:label="社交圈"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.PersonalInfoActivity"
             android:label="个人信息" />
         <activity
             android:name=".activity.MyMsgActivity"
             android:label="我的消息" />
-
-        <activity
-            android:name=".activity.SendSocialMsgActivity"
-            android:label="发送消息" />
         <activity
             android:name=".activity.ShareActivity"
-            android:label="将软件分享到微博"
+            android:label="分享该APP"
             android:theme="@style/GroupTheme" />
         <activity
             android:name=".activity.BreakfastActivity"
@@ -113,12 +105,15 @@
         <activity
             android:name=".activity.SmallGroupActivity"
             android:label="群组详情" />
-        <activity
-            android:name=".activity.DeviceScanActivity"
-            android:label="附近设备" />
 
         <service android:name="com.amap.api.location.APSService" />
         <service android:name=".common.StepService" />
+
+        <activity
+            android:name=".activity.GroupDialogActivity"
+            android:label="创建新群组"
+            android:theme="@style/dialog_activity" />
+        <activity android:name=".activity.CommActivity"></activity>
     </application>
 
 </manifest>

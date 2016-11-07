@@ -9,14 +9,17 @@
         android:id="@+id/nav_personal_info"
         android:icon="@drawable/personalinfo"
         android:title="个人信息" />
+
+    <item
+        android:id="@+id/nav_comm"
+        android:icon="@drawable/share"
+        android:title="设备连接" />
+
     <item
         android:id="@+id/nav_share"
         android:icon="@drawable/share"
         android:title="分享" />
-    <item
-        android:id="@+id/nav_social"
-        android:icon="@drawable/social"
-        android:title="社交圈" />
+
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/settings"

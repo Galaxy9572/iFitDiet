@@ -1,11 +1,13 @@
 package com.orange.ifitdiet.domain;
 
+import com.orange.ifitdiet.common.Bean;
+
 import java.io.Serializable;
 
 /**
  * Created by 廖俊瑶 on 2016/10/12.
  */
-public class WeatherBean implements Serializable {
+public class WeatherBean extends Bean implements Serializable {
     private String weather;
     private String temperature;
 

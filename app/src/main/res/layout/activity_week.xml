@@ -5,73 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.orange.ifitdiet.activity.WeekActivity">
-<RelativeLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+
     <RelativeLayout
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rl_stepsWeek">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="近日步数"
-            android:id="@+id/tv_stepWeek"
-            android:textSize="20sp"/>
-        <com.orange.ifitdiet.common.MyImageView
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_stepsWeek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_stepWeek"
-            android:id="@+id/iv_stepWeek"
-            android:src="@drawable/stepweek"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rl_heartbeatWeek"
-        android:layout_below="@id/rl_stepsWeek">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_heartbeatWeek"
-            android:text="近日心率"
-            android:textSize="20sp"/>
-        <com.orange.ifitdiet.common.MyImageView
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_stepWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近日步数"
+                android:textSize="20sp" />
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/lcv_steps"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/tv_stepWeek"
+                android:visibility="visible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_heartbeatWeek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_heartbeatWeek"
-            android:id="@+id/iv_heartbeatWeek"
-            android:src="@drawable/heartbeatweek"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:id="@+id/rl_bloodpressureWeek"
-        android:layout_below="@id/rl_heartbeatWeek">
-        <TextView
+            android:layout_below="@id/rl_stepsWeek"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_heartbeatWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近日心率"
+                android:textSize="20sp" />
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/lcv_heartbeats"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/tv_heartbeatWeek"
+                android:visibility="visible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bloodpressureWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_bloodpressureWeek"
-            android:text="近日血压"
-            android:textSize="20sp"/>
-        <com.orange.ifitdiet.common.MyImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_bloodpressureWeek"
-            android:id="@+id/iv_bloodpressureWeek"
-            android:src="@drawable/bloodpressureweek"/>
+            android:layout_below="@id/rl_heartbeatWeek"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_bloodpressureWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近日血压"
+                android:textSize="20sp" />
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/lcv_bloodpressure"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/tv_bloodpressureWeek"
+                android:visibility="visible"/>
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
 </ScrollView>

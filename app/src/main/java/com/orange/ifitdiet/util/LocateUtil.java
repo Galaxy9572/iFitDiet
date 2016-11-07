@@ -18,9 +18,6 @@ import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.domain.LocationBean;
 import com.orange.ifitdiet.domain.WeatherBean;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * 定位工具类，使用高德定位SDK
  * Created by 廖俊瑶 on 2016/9/3.
@@ -32,14 +29,16 @@ public class LocateUtil {
     private String city;//市
     private String district;//区
     private String street;//街道
-    private BeanPool beanPool = MainActivity.getBeanPool();
+    private BeanPool beanPool;
     private LocationBean locationBean;//存放定位数据的JavaBean
     private WeatherBean weatherBean;//存放天气数据的JavaBean
     private String weather;//当前天气
     private String temperature;//当前温度
+    private TimeUtil timeUtil= (TimeUtil) MainActivity.getUtilPool().getUtilMap().get("timeUtil");
 
     public LocateUtil(Context context) {
         this.context = context;
+        beanPool = MainActivity.getBeanPool();
     }
 
     /**
@@ -54,12 +53,7 @@ public class LocateUtil {
             public void onLocationChanged(AMapLocation aMapLocation) {
                 if (aMapLocation != null) if (aMapLocation.getErrorCode() == 0) {//定位成功回调信息，设置相关消息
                     aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                    aMapLocation.getLatitude();//获取经度
-                    aMapLocation.getLongitude();//获取纬度
-                    aMapLocation.getAccuracy();//获取精度信息
-                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Date date = new Date(aMapLocation.getTime());
-                    df.format(date);//定位时间
+//                    String time=timeUtil.getCurrentTime();//定位时间
                     aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果
                     province = aMapLocation.getProvince();//省信息
                     city = aMapLocation.getCity();//城市信息
@@ -67,9 +61,9 @@ public class LocateUtil {
                     street = aMapLocation.getStreet();//街道信息
                     aMapLocation.getCityCode();//城市编码
                     aMapLocation.getAdCode();//地区编码
+                    Log.e("城市", province + city + district + street);
                     locationBean = new LocationBean(province, city, district, street);
                     beanPool.getBeanMap().put("locationBean", locationBean);
-                    Log.e("城市", province + city + district + street);
                     getWeatherForecast(LocateUtil.this.context, city);
 
                 } else {//定位失败显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -78,7 +72,7 @@ public class LocateUtil {
                                     + aMapLocation.getErrorCode() + ", errInfo:"
                                     + aMapLocation.getErrorInfo());
                     Toast.makeText(context, aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
-                    locationBean = new LocationBean("", "", "", "");
+                    locationBean = new LocationBean("湖南省", "益阳市", "赫山区", "团圆南路");
                     beanPool.getBeanMap().put("locationBean", locationBean);
                     weatherBean = new WeatherBean("", "");
                     beanPool.getBeanMap().put("weatherBean", weatherBean);

@@ -2,13 +2,15 @@ package com.orange.ifitdiet.domain;
 
 import android.media.Image;
 
+import com.orange.ifitdiet.common.Bean;
+
 import java.io.Serializable;
 
 /**
  * Created by 廖俊瑶 on 2016/9/2.
  * 注册使用的JavaBean
  */
-public class UserBean implements Serializable {
+public class UserBean extends Bean implements Serializable {
     private String id;//id，服务器产生
     private String name;//用户名
     private int sex;//性别
@@ -18,8 +20,23 @@ public class UserBean implements Serializable {
     private String birthday;//生日
     private String hometown;//籍贯
     private String taste;//口味
+    private int height;//身高
+    private int weight;//体重
 
     public UserBean() {
+    }
+
+    public UserBean(String id, String name, int sex, String password,String loginName, String birthday, String hometown, String taste, int height, int weight) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.password = password;
+        this.loginName = loginName;
+        this.birthday = birthday;
+        this.hometown = hometown;
+        this.taste = taste;
+        this.height = height;
+        this.weight = weight;
     }
 
     public String getId() {
@@ -92,5 +109,21 @@ public class UserBean implements Serializable {
 
     public void setTaste(String taste) {
         this.taste = taste;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 }

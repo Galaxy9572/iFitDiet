@@ -29,7 +29,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/iv_location"
-                android:text="当前位置："
+                android:text="当前位置：下拉定位"
                 android:textSize="15sp" />
 
             <ImageView

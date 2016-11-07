@@ -40,7 +40,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="用户名：" />
+                android:text="昵称：" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,11 +89,11 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/tv_phone"
+                android:id="@+id/tv_taste"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
-                android:text="手机："
+                android:text="口味："
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -107,12 +107,12 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/tv_email"
+                android:id="@+id/tv_loginName"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
                 android:textSize="16sp"
-                android:text="邮箱：" />
+                android:text="登录名：" />
         </LinearLayout>
 
 
@@ -124,31 +124,46 @@
             android:layout_below="@id/line_email"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal">
+            android:layout_alignStart="@id/line_sex"
+            android:gravity="left">
 
             <TextView
-                android:id="@+id/tv_province"
+                android:id="@+id/tv_hometown"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="11"
                 android:textSize="16sp"
-                android:text="省：" />
+                android:text="故乡：" />
 
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:ems="11"
-                android:textSize="16sp"
-                android:text="市：" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line_hw"
+            android:layout_below="@id/line_hometown"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv_height"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="身高：" />
 
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:inputType="number"
+                android:hint="体重：" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/line_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line_hometown"
+            android:layout_below="@id/line_hw"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal">

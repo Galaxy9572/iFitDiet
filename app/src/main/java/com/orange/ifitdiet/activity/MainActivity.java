@@ -1,5 +1,7 @@
 package com.orange.ifitdiet.activity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,15 +37,17 @@ import com.orange.ifitdiet.util.DBUtil;
 import com.orange.ifitdiet.util.DisplayUtil;
 import com.orange.ifitdiet.util.LocateUtil;
 import com.orange.ifitdiet.util.NetUtil;
-import com.orange.ifitdiet.util.ShareUtil;
+import com.orange.ifitdiet.util.QRCodeUtil;
 import com.orange.ifitdiet.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private boolean isRegister, isLogin;
+    private static Boolean isExit = false;
     //Tab显示内容TextView
     private TextView tv_tab_recommend, tv_tab_health, tv_tab_locate, tv_tab_group;
     private ViewPager vp;
@@ -53,12 +58,17 @@ public class MainActivity extends AppCompatActivity
     private DisplayUtil displayUtil;//显示设置工具类
     private NetUtil netUtil;//网络通信工具类
     private TimeUtil timeUtil;//时间工具类
-    private ShareUtil shareUtil;
+    private QRCodeUtil qrCodeUtil;//二维码生成工具类
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!NetUtil.checkNetworkAvailable(this)){
+            //网络不可用
+            this.setNetworkMethod(this);
+        }
         //判断手机是否支持蓝牙4.0
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "你的手机不支持低功耗蓝牙，功能受到限制", Toast.LENGTH_SHORT).show();
@@ -77,40 +87,33 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initComponents();//初始化一些按钮、TextView等组件
-        initUtils();//初始化工具类实例
-        initDatabase();//初始化数据库
-        initLocation();//初始化高德定位
+        initUtilsAndPools();//初始化工具类实例
         initFragments();//初始化fragments
+        initDatabase();//初始化数据库
+        locateUtil.locate(getApplicationContext());
         Intent intent = new Intent(this, StepService.class);//启动计步器服务
         startService(intent);
-
 
     }
 
     /**
-     * 初始化工具类并添加到UtilPool中
+     * 初始化工具类和BeanPool并添加到Pool中
      */
-    private void initUtils() {
+    private void initUtilsAndPools() {
         locateUtil = new LocateUtil(this);
         dbUtil = new DBUtil(getApplicationContext());
         displayUtil = new DisplayUtil(getApplicationContext());
         netUtil = new NetUtil(getApplicationContext());
         timeUtil = new TimeUtil();
-        shareUtil = new ShareUtil(getApplicationContext());
+        qrCodeUtil = new QRCodeUtil();
         utilPool.getUtilMap().put("locateUtil", locateUtil);
         utilPool.getUtilMap().put("dbUtil", dbUtil);
         utilPool.getUtilMap().put("displayUtil", displayUtil);
         utilPool.getUtilMap().put("netUtil", netUtil);
         utilPool.getUtilMap().put("timeUtil", timeUtil);
-        utilPool.getUtilMap().put("shareUtil", shareUtil);
+        utilPool.getUtilMap().put("qrCodeUtil", qrCodeUtil);
     }
 
-    /**
-     * 初始化高德定位API的功能
-     */
-    private void initLocation() {
-        locateUtil.locate(this);
-    }
 
     /**
      * 初始化数据库
@@ -220,10 +223,10 @@ public class MainActivity extends AppCompatActivity
      * 重新设置tab上的四个标签的字体颜色
      */
     private void resetTextView() {
-        tv_tab_recommend.setTextColor(Color.BLACK);
-        tv_tab_locate.setTextColor(Color.BLACK);
-        tv_tab_health.setTextColor(Color.BLACK);
-        tv_tab_group.setTextColor(Color.BLACK);
+        tv_tab_recommend.setTextColor(Color.WHITE);
+        tv_tab_locate.setTextColor(Color.WHITE);
+        tv_tab_health.setTextColor(Color.WHITE);
+        tv_tab_group.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -263,15 +266,22 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_mymsg) {//我的消息按钮事件
             startActivity(new Intent().setClass(MainActivity.this, MyMsgActivity.class));
         } else if (id == R.id.nav_personal_info) {//个人信息按钮事件
-            startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
+            if (beanPool.getBeanMap().get("user") == null) {
+                startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
+                Toast.makeText(this, "请先登录哟", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent().setClass(MainActivity.this, PersonalInfoActivity.class));
+            }
         } else if (id == R.id.nav_share) {//分享按钮事件
             startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
-        } else if (id == R.id.nav_social) {//社交圈按钮事件
-            startActivity(new Intent().setClass(MainActivity.this, SocialHubActivity.class));
+        } else if (id == R.id.nav_settings) {
+            startActivity(new Intent().setClass(this, SettingActivity.class));
+        } else if (id == R.id.nav_comm) {
+            startActivity(new Intent().setClass(this, CommActivity.class));
+        } else if (id == R.id.nav_settings) {
+            startActivity(new Intent().setClass(this, SettingActivity.class));
         } else if (id == R.id.nav_about) {
             startActivity(new Intent().setClass(this, AboutActivity.class));
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent().setClass(this, DeviceScanActivity.class));
         } else if (id == R.id.nav_exit) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setTitle("退出程序").setMessage("是否退出程序")
@@ -305,6 +315,39 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * 菜单、返回键响应
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitBy2Click(); //调用双击退出函数
+        }
+        return false;
+    }
+
+    /**
+     * 双击退出函数
+     */
+    private void exitBy2Click() {
+        Timer tExit = null;
+        if (isExit == false) {
+            isExit = true; // 准备退出
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false; // 取消退出
+                }
+            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+
+        } else {
+            finish();
+            System.exit(0);
+        }
+    }
+
     public static BeanPool getBeanPool() {
         return beanPool;
     }
@@ -331,5 +374,32 @@ public class MainActivity extends AppCompatActivity
 
     public void iv_week(View view) {
         startActivity(new Intent().setClass(MainActivity.this, WeekActivity.class));
+    }
+    public static void setNetworkMethod(final Context context){
+        //提示对话框
+        AlertDialog.Builder builder=new AlertDialog.Builder(context);
+        builder.setTitle("网络设置提示").setMessage("网络连接不可用,是否进行设置?").setPositiveButton("设置", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent=null;
+                //判断手机系统的版本  即API大于10 就是3.0或以上版本
+                if(android.os.Build.VERSION.SDK_INT>10){
+                    intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                }else{
+                    intent = new Intent();
+                    ComponentName component = new ComponentName("com.android.settings","com.android.settings.WirelessSettings");
+                    intent.setComponent(component);
+                    intent.setAction("android.intent.action.VIEW");
+                }
+                context.startActivity(intent);
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 }

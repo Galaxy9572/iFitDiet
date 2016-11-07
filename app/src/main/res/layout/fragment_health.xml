@@ -22,7 +22,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@id/iv_bluetooth"
-            android:text="当前蓝牙配对设备：Intel Arduino设备"
+            android:text="当前设备：Intel Arduino设备"
             android:textSize="20sp"/>
         <RelativeLayout
             android:layout_below="@id/tv_bluetooth"

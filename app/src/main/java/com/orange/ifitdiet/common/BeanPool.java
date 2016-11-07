@@ -6,10 +6,10 @@ import java.util.HashMap;
  * Created by 廖俊瑶 on 2016/10/12.
  */
 public class BeanPool {
-    private HashMap beanMap;
+    private HashMap<String,Bean> beanMap;
 
     public BeanPool() {
-        beanMap = new HashMap<String, Object>();
+        beanMap = new HashMap<String, Bean>();
     }
 
     /**
@@ -17,7 +17,7 @@ public class BeanPool {
      *
      * @return 返回BeanPool的实例
      */
-    public HashMap getBeanMap() {
+    public HashMap<String,Bean> getBeanMap() {
         return beanMap;
     }
 

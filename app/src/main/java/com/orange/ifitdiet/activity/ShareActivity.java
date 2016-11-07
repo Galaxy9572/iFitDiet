@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,9 +66,9 @@ public class ShareActivity extends AppCompatActivity {
         window.setLayout((int) (screenWidth * 0.95F), LinearLayout.LayoutParams.WRAP_CONTENT);
         window.setContentView(R.layout.alert_dialog_share_custom);
         TextView tvMessage = (TextView) window.findViewById(R.id.textview_message_alert_dialog_share_custom);
-        LinearLayout llWeibo = (LinearLayout) window.findViewById(R.id.linearlayout_weibo_alert_dialog_share_custom);
+        ImageView iv_weibo = (ImageView) window.findViewById(R.id.iv_weibo);
         tvMessage.setText("分享到");
-        llWeibo.setOnClickListener(new View.OnClickListener() {
+        iv_weibo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AsyncTask<Void, Void, Void>() {

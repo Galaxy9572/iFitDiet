@@ -70,7 +70,7 @@ public class Base64 {
 
         /**
          * Encode/decode another block of input data.  this.output is provided by the caller, and
-         * must be big enough to hold all the coded data.  On exit, this.opwill be set to the length
+         * must be big enough to hold all the coded data.  On tv_exitGroup, this.opwill be set to the length
          * of the coded data.
          *
          * @param finish true if this is the final call to process for this object.  Will finalize
