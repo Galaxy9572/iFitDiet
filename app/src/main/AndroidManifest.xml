@@ -113,7 +113,12 @@
             android:name=".activity.GroupDialogActivity"
             android:label="创建新群组"
             android:theme="@style/dialog_activity" />
-        <activity android:name=".activity.CommActivity"></activity>
+        <activity android:name=".activity.CommActivity"
+            android:label="设备连接"
+            android:theme="@style/RecommendTheme"/>
+        <activity android:name=".activity.RegLoginActivity"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"
+            />
     </application>
 
 </manifest>

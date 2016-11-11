@@ -35,7 +35,7 @@
         android:layout_marginLeft="30dp"
         android:text="iFitDiet"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-    <Button
+    <!--<Button
         android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,5 +58,5 @@
         android:textColor="@color/white"
         android:background="@android:color/transparent"
         android:onClick="iv_login"
-        />
+        />-->
 </RelativeLayout>

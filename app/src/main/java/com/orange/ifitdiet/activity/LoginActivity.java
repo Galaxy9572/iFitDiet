@@ -1,5 +1,6 @@
 package com.orange.ifitdiet.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
@@ -15,7 +16,7 @@ import com.orange.ifitdiet.domain.UserBean;
 import com.orange.ifitdiet.util.NetUtil;
 
 public class LoginActivity extends AppCompatActivity {
-    private NetUtil netUtil = (NetUtil) MainActivity.getUtilPool().getUtilMap().get("netUtil");
+    NetUtil netUtil = new NetUtil(this);
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private CheckBox cb_remember;
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     user = (UserBean) MainActivity.getBeanPool().getBeanMap().get("user");
                 } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "登录失败了哟，请连接到服务器", Toast.LENGTH_SHORT).show();
                 }
                 try {
                     if (!user.getId().equals("") || user.getId() != null) {
@@ -76,13 +78,15 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                        Thread.sleep(1000);
+                        startActivity(new Intent().setClass(LoginActivity.this, MainActivity.class));
                         LoginActivity.this.finish();
                     } else {
-                        Toast.makeText(getApplicationContext(), "登录失败！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "登录失败了哟，请连接到服务器", Toast.LENGTH_SHORT).show();
                     }
                     Looper.loop();
-                }catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "登录失败！", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "登录失败了哟，请连接到服务器", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }

@@ -72,31 +72,35 @@ public class LocateFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 }
                 locationBean = (LocationBean) beanPool.getBeanMap().get("locationBean");
                 weatherBean = (WeatherBean) beanPool.getBeanMap().get("weatherBean");
-                if (locationBean != null) {
-                    province = locationBean.getProvince();//省信息
-                    city = locationBean.getCity();//城市信息
-                    district = locationBean.getDistrict();//城区信息
-                    street = locationBean.getStreet();//街道信息
-                    final String location = province + city + district + street;
-                    weather = weatherBean.getWeather();
-                    temperature = weatherBean.getTemperature();
+                try {
+                    if (locationBean != null) {
+                        province = locationBean.getProvince();//省信息
+                        city = locationBean.getCity();//城市信息
+                        district = locationBean.getDistrict();//城区信息
+                        street = locationBean.getStreet();//街道信息
+                        final String location = province + city + district + street;
+                        weather = weatherBean.getWeather();
+                        temperature = weatherBean.getTemperature();
 
-                    tv_location.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            tv_location.setText("当前位置：" + province + city + district + street);
-                        }
-                    });
-                    tv_weather.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            tv_weather.setText("当前天气：" + weather + "，" + temperature + "℃");
-                        }
-                    });
+                        tv_location.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv_location.setText("当前位置：" + province + city + district + street);
+                            }
+                        });
+                        tv_weather.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv_weather.setText("当前天气：" + weather + "，" + temperature + "℃");
+                            }
+                        });
 
-                    Log.e("位置", location);
+                        Log.e("位置", location);
+                    }
+                    Looper.loop();
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                Looper.loop();
             }
         }.start();
 

@@ -1,6 +1,8 @@
 package com.orange.ifitdiet.util;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,46 +19,51 @@ import java.util.ArrayList;
  */
 
 public class CommUtil {
-
+    private Context context;
     private DatagramSocket socket;
 
-    public CommUtil() {
+    public CommUtil(Context context) {
         //接收方创建步骤：
         //创建一个DatagramSocket对象，并指定监听的端口号
+        this.context=context;
         try {
-            socket = new DatagramSocket(9999);
+            socket = new DatagramSocket(9990);
             receiveData();
         } catch (SocketException e) {
             e.printStackTrace();
         }
+
     }
 
-    public String receiveData(){
-        //创建一个byte数组用于接收
-        byte data[] = new byte[1024];
-        //创建一个空的DatagramPacket对象
-        DatagramPacket datagramPacket = new DatagramPacket(data, data.length);
+    public String receiveData() {
+
         //使用receive方法接收发送方所发送的数据,同时这也是一个阻塞的方法
-        String receive= null;
+        String receive = null;
         try {
-            while(true){
-                socket.receive(datagramPacket);
-                //得到发送过来的数据
+            while (true) {
                 try {
+                    //创建一个byte数组用于接收
+                    byte data[] = new byte[1024];
+                    //创建一个空的DatagramPacket对象
+                    DatagramPacket datagramPacket = new DatagramPacket(data, data.length);
+                    //得到发送过来的数据
+                    socket.receive(datagramPacket);
                     receive = new String(datagramPacket.getData(), "utf-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                     break;
                 }
-                Log.e("WIFI传来的数据",receive);
+                Log.e("WIFI传来的数据", receive);
+                Toast.makeText(context, receive, Toast.LENGTH_SHORT).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return receive;
     }
 
-    public ArrayList<String> getConnectIp(){
+    public ArrayList<String> getConnectIp() {
         ArrayList<String> connectIpList = new ArrayList<String>();
         BufferedReader br = null;
         try {

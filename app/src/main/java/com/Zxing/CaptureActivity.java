@@ -3,7 +3,6 @@ package com.Zxing;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -21,11 +19,11 @@ import android.view.SurfaceView;
 
 import com.Zxing.camera.CameraManager;
 import com.Zxing.decoding.CaptureActivityHandler;
+import com.Zxing.decoding.InactivityTimer;
+import com.Zxing.view.ViewfinderView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.orange.ifitdiet.R;
-import com.Zxing.decoding.InactivityTimer;
-import com.Zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -156,19 +154,14 @@ public class CaptureActivity extends Activity implements Callback {
         }
         dialog.setTitle("扫描结果");
         dialog.setMessage(obj.getText());
-        dialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //用默认浏览器打开扫描得到的地址
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(obj.getText());
-                intent.setData(content_url);
-                startActivity(intent);
+
                 finish();
             }
         });
-        dialog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();

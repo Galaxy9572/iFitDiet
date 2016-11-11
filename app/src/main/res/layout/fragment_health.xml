@@ -8,24 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/iv_bluetooth"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/bluetooth"/>
-        <TextView
-            android:id="@+id/tv_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/iv_bluetooth"
-            android:text="当前设备：Intel Arduino设备"
-            android:textSize="20sp"/>
         <RelativeLayout
-            android:layout_below="@id/tv_bluetooth"
             android:background="@color/white"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
@@ -123,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_new_heartbeat"
-                android:text="最新数据："
+                android:text="平均心率："
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/orange"
                 android:layout_marginBottom="5dp"
@@ -135,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:id="@+id/tv_heartdata"
-                android:text="67次/分"
+                android:text="次/分"
                 android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:layout_below="@+id/tv_new_heartbeat"
@@ -183,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_pressuredata"
-                android:text="120/90mmhg"
+                android:text="/mmhg"
                 android:textColor="@color/orange"
                 android:layout_below="@id/tv_new_bloodpressure"
                 android:layout_marginEnd="10dp"

@@ -20,13 +20,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
 import com.orange.ifitdiet.common.BeanPool;
 import com.orange.ifitdiet.common.FragAdapter;
+import com.orange.ifitdiet.common.ListPool;
 import com.orange.ifitdiet.common.StepService;
 import com.orange.ifitdiet.common.UtilPool;
 import com.orange.ifitdiet.fragment.GroupFragment;
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager vp;
     private static BeanPool beanPool = new BeanPool();//存放JavaBean的池
     private static UtilPool utilPool = new UtilPool();//存放工具类的池
+    private static ListPool listPool = new ListPool();
     private LocateUtil locateUtil;//定位工具类
     private DBUtil dbUtil;//数据库工具类
     private DisplayUtil displayUtil;//显示设置工具类
@@ -88,9 +89,9 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         initComponents();//初始化一些按钮、TextView等组件
         initUtilsAndPools();//初始化工具类实例
+        locateUtil.locate(getApplicationContext());
         initFragments();//初始化fragments
         initDatabase();//初始化数据库
-        locateUtil.locate(getApplicationContext());
         Intent intent = new Intent(this, StepService.class);//启动计步器服务
         startService(intent);
 
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         tv_tab_group.setOnClickListener(new TabOnClickListener(3));
 
         View v_2 = getLayoutInflater().inflate(R.layout.nav_header_main, null);
-        Button bt_register = (Button) v_2.findViewById(R.id.bt_register);//MainActivity左滑导航栏中的注册按钮
+/*       Button bt_register = (Button) v_2.findViewById(R.id.bt_register);//MainActivity左滑导航栏中的注册按钮
         bt_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
             }
-        });
+        });*/
 
 
     }
@@ -238,24 +239,24 @@ public class MainActivity extends AppCompatActivity
         startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
         return super.onOptionsItemSelected(item);
     }
-
-    /**
+/*
+    *//**
      * 注册一个新的用户
      *
      * @param v
-     */
+     *//*
     public void iv_register(View v) {
         startActivity(new Intent().setClass(MainActivity.this, RegisterActivity.class));
     }
 
-    /**
+    *//**
      * 用户登录
      *
-     * @param v
-     */
+     * @param
+     *//*
     public void iv_login(View v) {
         startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -354,6 +355,10 @@ public class MainActivity extends AppCompatActivity
 
     public static UtilPool getUtilPool() {
         return utilPool;
+    }
+
+    public static ListPool getListPool() {
+        return listPool;
     }
 
     public void iv_breakfast(View v) {

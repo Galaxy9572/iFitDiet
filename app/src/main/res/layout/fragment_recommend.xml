@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_gravity="center"
-                android:text="正常运动量"
+                android:text="运动量较少"
                 android:textSize="18sp"/>
 
             <com.orange.ifitdiet.common.MyImageView
@@ -231,10 +231,7 @@
             android:id="@+id/tv_health_tips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_below="@id/tv_title_tips"
-            android:text="@string/health_tips" />
+            android:layout_margin="10dp"
+            android:layout_below="@id/tv_title_tips"/>
     </RelativeLayout>
 </ScrollView>

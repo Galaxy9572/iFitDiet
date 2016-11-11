@@ -6,6 +6,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import com.orange.ifitdiet.activity.MainActivity;
+import com.orange.ifitdiet.util.DBUtil;
+
 /**
  * Created by 廖俊瑶 on 2016/9/9.
  */
@@ -18,6 +21,7 @@ public class StepDetector implements SensorEventListener {
     private float mYOffset;
     private static long end = 0;
     private static long start = 0;
+
     /**
      * 最后加速度方向
      */
@@ -25,7 +29,7 @@ public class StepDetector implements SensorEventListener {
     private float mLastExtremes[][] = { new float[3 * 2], new float[3 * 2] };
     private float mLastDiff[] = new float[3 * 2];
     private int mLastMatch = -1;
-
+    private DBUtil dbUtil= (DBUtil) MainActivity.getUtilPool().getUtilMap().get("dbUtil");
     /**
      * 传入上下文的构造函数
      *
@@ -71,8 +75,7 @@ public class StepDetector implements SensorEventListener {
                         if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough
                                 && isNotContra) {
                             end = System.currentTimeMillis();
-                            if (end - start > 500) {// 此时判断为走了一步
-
+                            if (end - start > 600) {// 此时判断为走了一步
                                 CURRENT_STEP++;
                                 mLastMatch = extType;
                                 start = end;

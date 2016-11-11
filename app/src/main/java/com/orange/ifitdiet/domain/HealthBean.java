@@ -16,6 +16,17 @@ public class HealthBean extends Bean {
     private String date;
     private int burn_calories;
 
+    public HealthBean(String userId, int heartrate, int steps, String date) {
+        this.userId = userId;
+        this.heartrate = heartrate;
+        this.steps = steps;
+        this.date = date;
+    }
+
+    public HealthBean(int heartrate) {
+        this.heartrate = heartrate;
+    }
+
     public String getUserId() {
         return userId;
     }

@@ -17,11 +17,17 @@ public class GroupBean extends Bean implements Serializable {
     private int number;//群组人数
     private Image qr;//二维码
 
-    public GroupBean(String name,String userID,String date,int number) {
+    public GroupBean(String id,String name,String userID,String date,int number) {
+        this.id=id;
         this.name=name;
         this.userID=userID;
         this.date=date;
         this.number=number;
+    }
+
+    public GroupBean(String name, String userID) {
+        this.name = name;
+        this.userID = userID;
     }
 
     public GroupBean() {

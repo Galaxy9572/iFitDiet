@@ -6,12 +6,13 @@
     tools:context="com.orange.ifitdiet.activity.SmallGroupActivity">
     <RelativeLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_margin="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_group_num"
-            android:text="小组成员数：3人"
+            android:text="小组成员数：1人"
             android:textSize="20sp"/>
 
         <RelativeLayout
@@ -27,14 +28,14 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/iv_group_no1"
-                android:src="@drawable/pt1"/>
+                android:src="@drawable/logo"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_group_no1_1"
                 android:layout_toEndOf="@+id/iv_group_no1"
                 android:layout_toStartOf="@+id/bt_group_no1_1"
-                android:text="姓名：小明"
+                android:text="姓名：aaa"
                 android:textSize="25sp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -67,111 +68,6 @@
                 android:background="@color/light_blue"/>
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/white"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:id="@+id/group_no2"
-            android:layout_below="@+id/group_no1">
-            <com.orange.ifitdiet.common.MyImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/iv_group_no2"
-                android:src="@drawable/pt2"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_group_no2_1"
-                android:layout_toEndOf="@+id/iv_group_no2"
-                android:layout_toStartOf="@+id/bt_group_no2_1"
-                android:text="姓名：小红"
-                android:textSize="25sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_group_no2_2"
-                android:layout_toEndOf="@+id/iv_group_no2"
-                android:layout_toStartOf="@+id/bt_group_no2_1"
-                android:layout_below="@+id/tv_group_no2_1"
-                android:text="绿色食物,健康食物"
-                android:textSize="20sp"/>
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/bt_group_no2_1"
-                android:layout_alignParentEnd="true"
-                android:text="个人信息"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:layout_marginBottom="5dp"
-                android:background="@color/light_green"/>
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/bt_group_no2_2"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/bt_group_no2_1"
-                android:text="健康周报"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@color/light_blue"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/white"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:id="@+id/group_no3"
-            android:layout_below="@+id/group_no2">
-            <com.orange.ifitdiet.common.MyImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/iv_group_no3"
-                android:src="@drawable/pt3"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_group_no3_1"
-                android:layout_toEndOf="@+id/iv_group_no3"
-                android:layout_toStartOf="@+id/bt_group_no3_1"
-                android:text="姓名：Tom"
-                android:textSize="25sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_group_no3_2"
-                android:layout_toEndOf="@+id/iv_group_no3"
-                android:layout_toStartOf="@+id/bt_group_no3_1"
-                android:layout_below="@+id/tv_group_no3_1"
-                android:text="八分饱"
-                android:textSize="20sp"/>
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/bt_group_no3_1"
-                android:layout_alignParentEnd="true"
-                android:text="个人信息"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:layout_marginBottom="5dp"
-                android:background="@color/light_green"/>
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/bt_group_no3_2"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/bt_group_no3_1"
-                android:text="健康周报"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@color/light_blue"/>
-        </RelativeLayout>
 
         <Button
             android:layout_width="match_parent"
@@ -180,7 +76,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:id="@+id/bt_tui"
-            android:layout_below="@id/group_no3"
+            android:layout_below="@id/group_no1"
             android:background="@color/light_green"
             android:text="推   荐"
             android:textColor="@color/white"

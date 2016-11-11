@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
-    private NetUtil netUtil = (NetUtil) MainActivity.getUtilPool().getUtilMap().get("netUtil");
+    NetUtil netUtil=new NetUtil(this);
     private BeanPool beanPool = MainActivity.getBeanPool();
 
     @Override
@@ -159,6 +159,8 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     if (beanPool.getBeanMap().get("user") != null) {
                         Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_SHORT).show();
+                        Thread.sleep(1000);
+                        startActivity(new Intent().setClass(RegisterActivity.this, MainActivity.class));
                         RegisterActivity.this.finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "注册失败！", Toast.LENGTH_SHORT).show();

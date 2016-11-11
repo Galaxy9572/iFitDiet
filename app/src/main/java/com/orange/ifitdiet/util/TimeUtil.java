@@ -8,11 +8,11 @@ import java.util.Date;
  * Created by 廖俊瑶 on 2016/10/13.
  */
 public class TimeUtil {
-    private SimpleDateFormat dateFormatter, timeFormatter;
+    private static SimpleDateFormat dateFormatter=new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public TimeUtil() {
-        dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        timeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
     }
 
     /**
@@ -20,7 +20,7 @@ public class TimeUtil {
      *
      * @return 返回当前日期
      */
-    public String getCurrentDate() {
+    public static String getCurrentDate() {
         return dateFormatter.format(new Date().getTime());
     }
 
@@ -29,7 +29,7 @@ public class TimeUtil {
      *
      * @return 返回当前时间
      */
-    public String getCurrentTime() {
+    public static String getCurrentTime() {
         return timeFormatter.format(new Date().getTime());
     }
 }

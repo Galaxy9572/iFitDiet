@@ -14,8 +14,12 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.orange.ifitdiet.activity.MainActivity;
 import com.orange.ifitdiet.common.BeanPool;
+import com.orange.ifitdiet.common.ListPool;
 import com.orange.ifitdiet.domain.GroupBean;
+import com.orange.ifitdiet.domain.HealthBean;
+import com.orange.ifitdiet.domain.TipBean;
 import com.orange.ifitdiet.domain.UserBean;
+import com.orange.ifitdiet.domain.WeatherBean;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -26,7 +30,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.Integer.valueOf;
 
@@ -35,10 +42,12 @@ import static java.lang.Integer.valueOf;
  * Created by 廖俊瑶 on 2016/9/2.
  */
 public class NetUtil {
-    private String serverUrl = "http://172.21.127.1:8080/iFitDiet/";
+    private String serverUrl = "http://192.168.253.1:8080/iFitDiet/";
     private Context context;
     private BeanPool beanPool = MainActivity.getBeanPool();
-    private static int group_count = 0;
+    private ListPool listPool = MainActivity.getListPool();
+    private TimeUtil timeUtil= (TimeUtil) MainActivity.getUtilPool().getUtilMap().get("timeUtil");
+    private HealthBean healthBean;
 
     public NetUtil(Context context) {
         this.context = context;
@@ -86,6 +95,8 @@ public class NetUtil {
                         int height = Integer.valueOf(obj.getString("height"));
                         int weight = Integer.valueOf(obj.getString("weight"));
                         beanPool.getBeanMap().put("user", new UserBean(id, name, valueOf(sex), password, loginName, birthday, hometown, taste, height, weight));
+                        new HealthBean(id,0,0,timeUtil.getCurrentDate());
+                        beanPool.getBeanMap().put("healthBean",healthBean);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -133,6 +144,8 @@ public class NetUtil {
                         userBean.setWeight(Integer.valueOf(obj.getString("weight")));
                         beanPool.getBeanMap().put("user", userBean);
                         getGroup(userBean);
+                        new HealthBean(userBean.getId(),0,0,TimeUtil.getCurrentDate());
+                        beanPool.getBeanMap().put("healthBean",healthBean);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -206,7 +219,7 @@ public class NetUtil {
      *
      * @param groupBean
      */
-    public void createGroup(GroupBean groupBean) {
+    public void createGroup(final UserBean userBean, final GroupBean groupBean) {
         String createUrl = serverUrl + "GroupServlet?type=add";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -216,7 +229,6 @@ public class NetUtil {
 
             public void onSuccess(int statusCode, Header[] headers,
                                   JSONObject obj) {
-                group_count++;
                 if (statusCode == 200 || statusCode == 304) {
                     try {
                         String id = obj.getString("id");
@@ -224,9 +236,12 @@ public class NetUtil {
                         String name = obj.getString("name");
                         String date = obj.getString("date");
                         String number = obj.getString("number");
+                        GroupBean groupBean=new GroupBean(id,name,userid,date,valueOf(number));
+                        listPool.getListMap().get("groupList").get(0).put(groupBean.getId(),groupBean);
                         QRCodeUtil.createQRImage(id, 300, 300, null, Environment.getExternalStorageDirectory().getPath());
 //                        String qr = obj.getString("qr");
-                        beanPool.getBeanMap().put(name, new GroupBean(name, userid, date, valueOf(number)));
+                        getGroup(userBean);
+                        Log.e("创建群组：\nid：", id + "\nuserid：" + userid + "\nname：" + name + "\ndate：" + date + "\nnumber：" + number);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -235,38 +250,84 @@ public class NetUtil {
         });
     }
 
-    public List<GroupBean> getGroup(UserBean userBean) {
+    /**
+     * 获得用户的群组
+     *
+     * @param user
+     * @return
+     */
+    public void getGroup(UserBean user) {
+        final List<Map<String, GroupBean>> groupList = new ArrayList<>();
         String getUrl = serverUrl + "GroupServlet?type=query";
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.put("userid", userBean.getId());
+        params.put("userid", user.getId());
         client.post(getUrl, params, new JsonHttpResponseHandler() {
             public void onSuccess(int statusCode, Header[] headers,
                                   JSONArray array) {
-                Log.e("JSON长度：：：：",array.length()+"");
-                for (int i = 0; i < array.length(); i++) {
-                    try {
-                        // 获取具体的一个JSONObject对象
-                        JSONObject obj = array.getJSONObject(i);
-                        //JSONObject对象get(“属性名”)，getString(“属性名”),getInt(“属性名”)等方法来获取指定属性名的值
-                        Log.e("群组：：：：","id" + obj.getString("id") + "__name：" + obj.getString("name")
-                                + "__userid：" + obj.getString("userid")
-                                + "__date：" + obj.getString("date") + "__number：" + obj.getString("number")
-                                + "__qRCode：" + obj.getString("qRCode"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                if (statusCode == 200 || statusCode == 304) {
+                    Log.e("JSON长度：", array.length() + "");
+                    Map<String, GroupBean> map = new HashMap<>();
+                    for (int i = 0; i < array.length(); i++) {
+                        try {
+                            // 获取具体的一个JSONObject对象
+                            JSONObject obj = array.getJSONObject(i);
+                            String id = obj.getString("id");
+                            String name = obj.getString("name");
+                            String userid = obj.getString("userid");
+                            String date = obj.getString("date");
+                            int number = Integer.valueOf(obj.getString("number"));
+                            GroupBean groupBean = new GroupBean(id, name, userid, date, number);
+                            Log.e("group" + i, groupBean.getId());
+                            map.put(id, groupBean);
+                            //JSONObject对象get(“属性名”)，getString(“属性名”),getInt(“属性名”)等方法来获取指定属性名的值
+                            Log.e("群组" + i, "\nid：" + obj.getString("id") + "\nname：" + obj.getString("name")
+                                    + "\nuserid：" + obj.getString("userid")
+                                    + "\ndate：" + obj.getString("date") + "\nnumber：" + obj.getString("number")
+                                    + "\nqRCode：" + obj.getString("qRCode"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-
+                    groupList.add(map);
+                    listPool.getListMap().put("groupList", groupList);
+                    Log.e("群组数量：",groupList.get(0).size()+"");
                 }
             }
         });
+    }
+
+    /**
+     * 获取商家信息
+     * @return
+     */
+    public List getBusiness() {
+        String businessUrl=serverUrl+"";
         return null;
     }
 
-
-    public List getBusiness() {
-
-        return null;
+    public void getLifeTips(WeatherBean weatherBean){
+        String tipUrl=serverUrl+"LifeServlet?type=find";
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("province", weatherBean.getProvince());
+        params.put("temperature", weatherBean.getTemperature());
+        client.post(tipUrl, params, new JsonHttpResponseHandler() {
+            public void onSuccess(int statusCode, Header[] headers,
+                                  JSONObject obj) {
+                if (statusCode == 200 || statusCode == 304) {
+                    try {
+                        String str1 = obj.getString("str1");
+                        String str2 = obj.getString("str2");
+                        TipBean tipBean=new TipBean(str1,str2);
+                        beanPool.getBeanMap().put("tipBean",tipBean);
+                        Log.e("健康贴士：\nstr1：", str1 + "\nstr2：" + str2 );
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     // 检测网络

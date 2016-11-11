@@ -64,7 +64,7 @@ public class LocateUtil {
                     Log.e("城市", province + city + district + street);
                     locationBean = new LocationBean(province, city, district, street);
                     beanPool.getBeanMap().put("locationBean", locationBean);
-                    getWeatherForecast(LocateUtil.this.context, city);
+                    getWeatherForecast(LocateUtil.this.context,province, city);
 
                 } else {//定位失败显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                     Log.e("AmapError",
@@ -72,9 +72,9 @@ public class LocateUtil {
                                     + aMapLocation.getErrorCode() + ", errInfo:"
                                     + aMapLocation.getErrorInfo());
                     Toast.makeText(context, aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
-                    locationBean = new LocationBean("湖南省", "益阳市", "赫山区", "团圆南路");
+                    locationBean = new LocationBean("福建省", "厦门市", "区", "环岛路");
                     beanPool.getBeanMap().put("locationBean", locationBean);
-                    weatherBean = new WeatherBean("", "");
+                    weatherBean = new WeatherBean("多云", "20","","");
                     beanPool.getBeanMap().put("weatherBean", weatherBean);
                 }
             }
@@ -98,7 +98,7 @@ public class LocateUtil {
      * @param context
      * @param city 当前的城市
      */
-    public void getWeatherForecast(Context context, String city) {
+    private void getWeatherForecast(Context context, final String province, final String city) {
         WeatherSearchQuery weatherQuery = new WeatherSearchQuery(city, WeatherSearchQuery.WEATHER_TYPE_LIVE);
         WeatherSearch weatherSearch = new WeatherSearch(context);
         weatherSearch.setQuery(weatherQuery);
@@ -109,7 +109,7 @@ public class LocateUtil {
                     LocalWeatherLive liveWeather = localWeatherLiveResult.getLiveResult();
                     weather = liveWeather.getWeather();
                     temperature = liveWeather.getTemperature();
-                    weatherBean = new WeatherBean(temperature, weather);
+                    weatherBean = new WeatherBean(temperature, weather,province,city);
                     beanPool.getBeanMap().put("weatherBean", weatherBean);
                     Log.e("天气", temperature + weather);
 

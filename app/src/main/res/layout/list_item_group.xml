@@ -76,7 +76,7 @@
             android:text="已聚餐："
             android:textSize="18sp" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_invite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,9 +85,9 @@
             android:layout_marginEnd="70dp"
             android:layout_marginTop="50dp"
             android:text="+邀请"
-            android:textSize="18sp" />
+            android:textSize="18sp" />-->
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_exitGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="50dp"
             android:text="X退出"
-            android:textSize="18sp" />
+            android:textSize="18sp" />-->
 
     </RelativeLayout>
 

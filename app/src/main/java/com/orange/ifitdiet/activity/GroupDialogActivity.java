@@ -28,41 +28,45 @@ public class GroupDialogActivity extends Activity {
         setContentView(R.layout.activity_group_dialog);
         Button bt_confirm= (Button) findViewById(R.id.bt_confirm);
         Button bt_cancel= (Button) findViewById(R.id.bt_cancel);
-        bt_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText et_groupName= (EditText) findViewById(R.id.et_groupName);
-                final String groupName=et_groupName.getText().toString();
-                String date=timeUtil.getCurrentDate();
-                String userID=user.getId();
-                int number=0;
-                if(!"".equals(groupName)){
-                    GroupBean groupBean=new GroupBean(groupName,userID,date,number);
-                    netUtil.createGroup(groupBean);
-                    new Thread(){
-                        public void run(){
-                            Looper.prepare();
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+        try {
+            bt_confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int groupSize=MainActivity.getListPool().getListMap().get("groupList").get(0).size();//Map的大小
+                    EditText et_groupName= (EditText) findViewById(R.id.et_groupName);
+                    final String groupName=et_groupName.getText().toString();
+                    String date=timeUtil.getCurrentDate();
+                    String userID=user.getId();
+                    int number=0;
+                    if(!"".equals(groupName)){
+                        GroupBean groupBean=new GroupBean(groupName,userID);
+                        netUtil.createGroup(user,groupBean);
+                        new Thread(){
+                            public void run(){
+                                Looper.prepare();
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if(groupSize<MainActivity.getListPool().getListMap().get("groupList").get(0).size()){
+                                    Toast.makeText(GroupDialogActivity.this, "创建成功！", Toast.LENGTH_SHORT).show();
+                                    GroupDialogActivity.this.finish();
+                                }else{
+                                    Toast.makeText(GroupDialogActivity.this, "创建失败！", Toast.LENGTH_SHORT).show();
+                                }
+                                Looper.loop();
                             }
-                            if(beanPool.getBeanMap().get(groupName)!=null){
-                                Toast.makeText(GroupDialogActivity.this, "创建成功！", Toast.LENGTH_SHORT).show();
-                                this.stop();
-                                GroupDialogActivity.this.finish();
-                            }else{
-                                Toast.makeText(GroupDialogActivity.this, "创建失败！", Toast.LENGTH_SHORT).show();
-                            }
-                            Looper.loop();
-                        }
-                    }.start();
-                }else{
-                    Toast.makeText(GroupDialogActivity.this, "请输入群组名", Toast.LENGTH_SHORT).show();
-                }
+                        }.start();
+                    }else{
+                        Toast.makeText(GroupDialogActivity.this, "请输入群组名", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-        });
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         bt_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,14 +1,17 @@
 package com.orange.ifitdiet.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orange.ifitdiet.R;
+import com.orange.ifitdiet.activity.QRActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -63,9 +66,9 @@ public class GroupListAdapter extends BaseAdapter {
             listItemView.iv_groupImg = (ImageView) view.findViewById(R.id.iv_group);
             listItemView.tv_groupName = (TextView) view.findViewById(R.id.tv_groupName);
             listItemView.tv_people = (TextView) view.findViewById(R.id.tv_people);
-            listItemView.tv_invite = (TextView) view.findViewById(R.id.tv_invite);
+//            listItemView.tv_invite = (TextView) view.findViewById(R.id.tv_invite);
             listItemView.tv_gathered = (TextView) view.findViewById(R.id.tv_gathered);
-            listItemView.tv_exitGroup = (TextView) view.findViewById(R.id.tv_exitGroup);
+//            listItemView.tv_exitGroup = (TextView) view.findViewById(R.id.tv_exitGroup);
             listItemView.iv_shareGroup = (ImageView) view.findViewById(R.id.iv_shareGroup);
             listItemView.tv_shareGroup = (TextView) view.findViewById(R.id.tv_shareGroup);
             view.setTag(listItemView);
@@ -76,6 +79,15 @@ public class GroupListAdapter extends BaseAdapter {
         listItemView.tv_groupName.setText((String) item_list.get(position).get("groupName"));
         listItemView.tv_people.setText((String) item_list.get(position).get("people"));
         listItemView.tv_gathered.setText((String) item_list.get(position).get("gathered"));
+        listItemView.tv_shareGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,item_list.get(position).get("groupName")+"",Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(context, QRActivity.class);
+                it.putExtra("id", item_list.get(position).get("id").toString());
+                context.startActivity(it);
+            }
+        });
         return view;
     }
 }
