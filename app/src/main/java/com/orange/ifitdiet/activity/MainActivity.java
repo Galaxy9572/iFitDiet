@@ -275,12 +275,8 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (id == R.id.nav_share) {//分享按钮事件
             startActivity(new Intent().setClass(MainActivity.this, ShareActivity.class));
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent().setClass(this, SettingActivity.class));
         } else if (id == R.id.nav_comm) {
             startActivity(new Intent().setClass(this, CommActivity.class));
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent().setClass(this, SettingActivity.class));
         } else if (id == R.id.nav_about) {
             startActivity(new Intent().setClass(this, AboutActivity.class));
         } else if (id == R.id.nav_exit) {

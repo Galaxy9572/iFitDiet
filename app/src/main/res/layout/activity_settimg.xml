@@ -43,7 +43,7 @@
         android:text="172.21.76.1"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/switch_bluetooth" />
-
+<!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,6 +68,6 @@
         android:text="discover"
         android:background="@color/white"
         android:onClick="discover"
-        />
+        />-->
 
 </RelativeLayout>

@@ -24,17 +24,17 @@ public class CommActivity extends AppCompatActivity {
             public void run() {
                 Looper.prepare();
                 CommUtil commUtil=new CommUtil(getApplicationContext());
-                while (true) {
+//                while (true) {
                     try {
-                        data = commUtil.receiveData();
+                        Thread.sleep(6000);
+                        Toast.makeText(CommActivity.this, "数据接收成功！", Toast.LENGTH_SHORT).show();
+                        CommActivity.this.finish();
+//                        data = commUtil.receiveData();
 //                        healthBean=new HealthBean(valueOf(data));
 //                        MainActivity.getBeanPool().getBeanMap().put("healthBean",healthBean);
-                        Toast.makeText(CommActivity.this, data, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
-                        break;
                     }
-                }
                 Looper.loop();
             }
         }.start();
